@@ -4,7 +4,7 @@ import { ComingSection } from "@/components/coming-section";
 import { BrandLockup } from "@/components/brand-lockup";
 
 export default function Home() {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "production") {
     return (
       <ComingSection
         header={<BrandLockup variant="landing" href={undefined} />}
