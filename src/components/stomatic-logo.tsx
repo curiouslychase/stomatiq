@@ -1,0 +1,87 @@
+// Dice-based logo from src/components/dice.svg (1:1)
+
+type StomaticLogoProps = {
+  size?: number;
+  className?: string;
+  color?: string; // defaults to currentColor
+};
+
+export function StomaticLogo({
+  size = 111,
+  className,
+  color = "currentColor",
+}: StomaticLogoProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 1191 1178"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+    >
+      {/* Exact geometry from src/components/dice.svg, 1:1 (no drips) */}
+      <g fill={color}>
+        <ellipse
+          cx="159.468"
+          cy="113.171"
+          rx="159.468"
+          ry="113.171"
+          transform="matrix(1 0 0 -1 417 226.342)"
+        />
+        <ellipse
+          cx="159.468"
+          cy="113.171"
+          rx="159.468"
+          ry="113.171"
+          transform="matrix(0 1 1 0 924.238 414.643)"
+        />
+        <ellipse
+          cx="159.468"
+          cy="113.171"
+          rx="159.468"
+          ry="113.171"
+          transform="matrix(-1 0 0 1 735.937 921.88)"
+        />
+        <ellipse
+          cx="159.468"
+          cy="113.171"
+          rx="159.468"
+          ry="113.171"
+          transform="matrix(0 -1 -1 0 228.7 733.579)"
+        />
+        <ellipse cx="575.757" cy="574.351" rx="128.757" ry="127.351" />
+        <ellipse
+          cx="308.178"
+          cy="294.178"
+          rx="128.481"
+          ry="88.1456"
+          transform="rotate(-45 308.178 294.178)"
+        />
+        <ellipse
+          cx="841.281"
+          cy="304.178"
+          rx="128.481"
+          ry="88.1456"
+          transform="rotate(45 841.281 304.178)"
+        />
+        <ellipse
+          cx="841.281"
+          cy="827.281"
+          rx="128.481"
+          ry="88.1456"
+          transform="rotate(135 841.281 827.281)"
+        />
+        <ellipse
+          cx="308.178"
+          cy="837.281"
+          rx="128.481"
+          ry="88.1456"
+          transform="rotate(-135 308.178 837.281)"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export default StomaticLogo;

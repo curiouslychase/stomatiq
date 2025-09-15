@@ -1,17 +1,7 @@
 import { getAllPostsMeta } from "@/lib/posts";
 import { HeroCard, SmallCard, SidebarList } from "@/components/post-cards";
-import { ComingSection } from "@/components/coming-section";
-import { BrandLockup } from "@/components/brand-lockup";
 
-export default function Home() {
-  if (process.env.NODE_ENV === "development") {
-    return (
-      <ComingSection
-        header={<BrandLockup variant="landing" href={undefined} />}
-        description="We’re crafting something new. Check back shortly."
-      />
-    );
-  }
+export default function SiteHome() {
   const posts = getAllPostsMeta();
   const [first, second, third, ...rest] = posts;
   const sidebar = rest.slice(0, 5);
