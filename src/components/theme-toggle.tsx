@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 const themes = [
-  { id: "light", label: "Light" },
-  { id: "dark", label: "Dark" },
+  { id: "light", label: "Linen" },
+  { id: "dark", label: "Space Cadet" },
   { id: "system", label: "System" },
 ];
 

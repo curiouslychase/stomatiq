@@ -12,10 +12,10 @@ export default function PostsPage() {
               <h2 className="text-lg font-medium group-hover:underline">
                 {post.title}
               </h2>
-              <p className="mt-1 text-sm text-black/70 dark:text-white/70">
+              <p className="mt-1 text-sm text-foreground/70">
                 {post.excerpt}
               </p>
-              <p className="mt-1 text-xs text-black/50 dark:text-white/50">
+              <p className="mt-1 text-xs text-foreground/50">
                 {new Date(post.date).toLocaleDateString()}
               </p>
             </Link>
@@ -25,3 +25,4 @@ export default function PostsPage() {
     </main>
   );
 }
+

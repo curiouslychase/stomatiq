@@ -6,12 +6,14 @@ type ComingSectionProps = {
   title?: string;
   description?: string;
   header?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export function ComingSection({
   title,
   description,
   header,
+  children,
 }: ComingSectionProps) {
   return (
     <main
@@ -26,9 +28,12 @@ export function ComingSection({
           </h1>
         ) : null}
         {description ? (
-          <p className="mt-3 text-[15px] leading-7 text-black/70 dark:text-white/70">
+          <p className="mt-3 text-[15px] leading-7 text-foreground/70">
             {description}
           </p>
+        ) : null}
+        {children ? (
+          <div className="mt-8 text-center space-y-4">{children}</div>
         ) : null}
       </div>
     </main>

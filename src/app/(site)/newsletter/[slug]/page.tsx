@@ -29,7 +29,7 @@ export default async function PostPage({
       ) : null}
 
       <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-10">
-        <aside className="order-2 lg:order-1 text-sm text-black/70 dark:text-white/70">
+        <aside className="order-2 lg:order-1 text-sm text-foreground/70">
           {post.authorAvatar ? (
             <div className="relative h-14 w-14 overflow-hidden rounded-full border border-black/[.08] dark:border-white/[.12]">
               <Image
@@ -63,12 +63,12 @@ export default async function PostPage({
             {post.title}
           </h1>
           {post.excerpt ? (
-            <p className="mt-3 text-lg text-black/70 dark:text-white/70">
+            <p className="mt-3 text-lg text-foreground/70">
               {post.excerpt}
             </p>
           ) : null}
           <div
-            className="mt-8 leading-8 text-[17px] text-black/80 dark:text-white/80"
+            className="mt-8 leading-8 text-[17px] text-foreground/80"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         </article>
@@ -76,3 +76,4 @@ export default async function PostPage({
     </main>
   );
 }
+

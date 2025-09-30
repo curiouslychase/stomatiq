@@ -18,14 +18,14 @@ export function HeroCard({ post }: { post: PostMeta }) {
         ) : null}
       </div>
       <div className="mt-3">
-        <div className="text-xs uppercase tracking-wide text-black/60 dark:text-white/60">
+        <div className="text-xs uppercase tracking-wide text-foreground/60">
           {post.category || ""}
         </div>
         <h2 className="mt-1 text-2xl font-semibold tracking-tight group-hover:underline">
           {post.title}
         </h2>
         {post.excerpt ? (
-          <p className="mt-1 text-sm text-black/70 dark:text-white/70">
+          <p className="mt-1 text-sm text-foreground/70">
             {post.excerpt}
           </p>
         ) : null}
@@ -52,13 +52,13 @@ export function SmallCard({ post }: { post: PostMeta }) {
         ) : null}
       </div>
       <div>
-        <div className="text-[11px] uppercase tracking-wide text-black/60 dark:text-white/60">
+        <div className="text-[11px] uppercase tracking-wide text-foreground/60">
           {post.category || ""}
         </div>
         <h3 className="text-sm font-medium group-hover:underline">
           {post.title}
         </h3>
-        <p className="mt-1 text-xs text-black/60 dark:text-white/60">
+        <p className="mt-1 text-xs text-foreground/60">
           {new Date(post.date).toLocaleDateString()}
         </p>
       </div>

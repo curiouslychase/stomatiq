@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stomatiq Blog",
-  description: "A simple blog powered by Next.js",
+  title: {
+    default: "Stomatiq",
+    template: "%s — Stomatiq",
+  },
+  description:
+    "AI courses, products, and workflows that help creators and small teams ship what matters.",
 };
 
 export default function RootLayout({
