@@ -162,7 +162,15 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"courses": Record<string, {
+		"ai-workflow-open-spec": Record<string, {
+  id: string;
+  body?: string;
+  collection: "ai-workflow-open-spec";
+  data: any;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"courses": Record<string, {
   id: string;
   body?: string;
   collection: "courses";
