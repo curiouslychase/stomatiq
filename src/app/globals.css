@@ -13,6 +13,12 @@
   /* Overlay color for mobile menu (light mode) */
   --overlay: 46 239 114; /* #2EEF72 */
 
+  /* Paper texture tokens */
+  --texture-paper-img: url("/textures/bkg-noise.webp");
+  --texture-paper-size: 200px 200px;
+  --texture-paper-mixBlendMode: normal;
+  --texture-paper-opacity: 0.9;
+
   /* Light theme */
   --background: var(--linen);
   --foreground: var(--night);
@@ -26,14 +32,16 @@
   --background-alt: var(--smoky);
   /* Match overlay to theme background in dark mode */
   --overlay: var(--background);
+  --texture-paper-opacity: 0.12;
 }
 
 .vibe {
   /* Vibe theme */
-  --background: 61 174 110; /* #3DAE6E */
+  --background: 27 143 68; /* #1B8F44 */
   --foreground: var(--linen);
   --background-alt: 22 65 38; /* #164126 */
   --overlay: var(--background);
+  --texture-paper-opacity: 0.12;
 }
 
 @theme inline {
@@ -58,6 +66,21 @@ body {
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
   font-family: var(--font-sans);
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--texture-paper-img);
+  background-repeat: repeat;
+  background-size: var(--texture-paper-size);
+  mix-blend-mode: var(--texture-paper-mixBlendMode);
+  opacity: var(--texture-paper-opacity);
+  pointer-events: none;
 }
 
 /* Ensure links inherit theme foreground color in both light and dark modes */
