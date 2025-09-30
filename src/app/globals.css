@@ -1,23 +1,29 @@
 @import "tailwindcss";
+@import "@fontsource/geist/index.css";
+@import "@fontsource/geist-mono/index.css";
 
 :root {
   /* Core palette */
-  --linen: 245 242 240;
-  --space-cadet: 43 45 66; /* #2B2D42 */
-  --cool-gray: 131 129 150; /* #838196 */
-  --night: 22 22 25; /* #161619 */
-  --smoky: 10 13 6; /* #0A0D06 */
-  --sandy-brown: 244 175 66; /* #F4AF42 (accent – not used yet) */
+  --linen: 237 239 237; /* #EDEFED */
+  --space-cadet: 43 45 66; /* legacy token */
+  --cool-gray: 131 129 150; /* legacy token */
+  --night: 3 23 11; /* #03170B */
+  --smoky: 10 13 6;
+  --sandy-brown: 244 175 66;
+  /* Overlay color for mobile menu (light mode) */
+  --overlay: 46 239 114; /* #2EEF72 */
 
-  /* Light theme (Linen) */
+  /* Light theme */
   --background: var(--linen);
-  --foreground: var(--space-cadet);
+  --foreground: var(--night);
 }
 
 .dark {
-  /* Dark theme (Black) */
-  --background: 0 0 0;
+  /* Dark theme */
+  --background: var(--night);
   --foreground: var(--linen);
+  /* Match overlay to theme background in dark mode */
+  --overlay: var(--background);
 }
 
 @theme inline {
@@ -30,14 +36,17 @@
   --color-night: rgb(var(--night));
   --color-smoky: rgb(var(--smoky));
   --color-sandy-brown: rgb(var(--sandy-brown));
-  --font-sans: var(--font-lora);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-lora);
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 body {
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
+  font-family: var(--font-sans);
 }
 
 /* Ensure links inherit theme foreground color in both light and dark modes */

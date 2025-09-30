@@ -1,0 +1,56 @@
+---
+import "../app/globals.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+const { title = "stomatiq" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-background text-foreground min-h-screen flex flex-col">
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+    <script is:inline>
+      (function () {
+        const getSystem = () =>
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        const applyTheme = (value) => {
+          const theme = value === "system" ? getSystem() : value;
+          document.documentElement.classList.toggle("dark", theme === "dark");
+        };
+        const init = () => {
+          const select = document.getElementById("theme-select");
+          const saved = localStorage.getItem("theme") || "system";
+          if (select) select.value = saved;
+          applyTheme(saved);
+          if (select) {
+            select.addEventListener("change", (e) => {
+              const value = e.target.value;
+              localStorage.setItem("theme", value);
+              applyTheme(value);
+            });
+          }
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", () => {
+              const current = localStorage.getItem("theme") || "system";
+              if (current === "system") applyTheme("system");
+            });
+        };
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+  </body>
+</html>
