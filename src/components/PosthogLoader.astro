@@ -1,0 +1,27 @@
+---
+const flag = import.meta.env.ANALYTICS_ENABLED
+  ? import.meta.env.ANALYTICS_ENABLED.toLowerCase()
+  : "";
+const analyticsEnabled =
+  import.meta.env.PROD || ["true", "1", "yes"].includes(flag);
+const apiKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+const apiHost =
+  import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+const hasKey = typeof apiKey === "string" && apiKey.length > 0;
+const shouldLoad = analyticsEnabled && hasKey;
+const keyLiteral = hasKey ? JSON.stringify(apiKey) : "";
+const hostLiteral = JSON.stringify(apiHost);
+---
+{shouldLoad && (
+  <>
+    <script type="module" is:inline>
+      import posthog from "posthog-js";
+
+      if (!window.__posthog_initialized) {
+        posthog.init(${keyLiteral}, { api_host: ${hostLiteral} });
+        window.posthog = posthog;
+        window.__posthog_initialized = true;
+      }
+    </script>
+  </>
+)}

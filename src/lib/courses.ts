@@ -55,7 +55,7 @@ export async function getCourse(slug: string): Promise<Course | null> {
   const fullPath = fs.existsSync(fullPathMd) ? fullPathMd : fullPathMdx;
   if (!fullPath || !fs.existsSync(fullPath)) return null;
   const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { content, data } = matter(fileContents);
+  const { content } = matter(fileContents);
   const processed = await remark().use(html).process(content);
   const contentHtml = processed.toString();
   const meta = getCourseMeta(slug);

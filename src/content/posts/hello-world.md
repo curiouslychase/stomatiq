@@ -10,6 +10,6 @@ authorBio: Lucas Crespo is the creative lead of Every. Previously art director a
 category: Source Code
 ---
 
-Welcome to your new blog built with Next.js. Edit this file to change the content.
+Welcome to your new blog built with Astro. Edit this file to change the content.
 
 

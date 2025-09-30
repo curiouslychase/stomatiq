@@ -1,5 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllCoursesMeta } from "../../lib/courses";
+
+const courses = getAllCoursesMeta();
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+const formatPrice = (value: number | undefined) =>
+  typeof value === "number" ? currencyFormatter.format(value) : null;
 ---
 
 <BaseLayout title="Courses">
@@ -9,10 +19,64 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       Deep dives and workshops on product, engineering, and AI.
     </p>
 
-    <div
-      class="courses-grid relative mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-20 overflow-hidden"
-    >
-      <!-- TODO: List courses from content collection -->
-    </div>
+    {courses.length ? (
+      <div
+        class="courses-grid relative mt-10 grid grid-cols-1 gap-x-0 gap-y-20 overflow-hidden md:grid-cols-2 lg:grid-cols-3"
+      >
+        {courses.map((course) => {
+          const price = formatPrice(course.price);
+          return (
+            <article class="courses-item relative group flex h-full flex-col rounded-xl border border-foreground/10 bg-background p-6 transition hover:border-foreground/20">
+              <a
+                href={`/courses/${course.slug}/`}
+                class="flex h-full flex-col no-underline"
+              >
+                <div class="text-xs uppercase tracking-wide text-foreground/60">
+                  {[course.level, course.duration]
+                    .filter(Boolean)
+                    .join(" • ")}
+                </div>
+                <h2 class="mt-3 text-xl font-semibold tracking-tight">
+                  {course.title}
+                </h2>
+                {course.excerpt && (
+                  <p class="mt-3 text-sm leading-6 text-foreground/70">
+                    {course.excerpt}
+                  </p>
+                )}
+                {course.tags?.length ? (
+                  <ul class="mt-4 flex flex-wrap gap-2">
+                    {course.tags.map((tag) => (
+                      <li class="rounded-full bg-foreground/5 px-3 py-1 text-xs uppercase tracking-wide text-foreground/70">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                <div class="mt-auto pt-6 text-sm font-medium text-foreground">
+                  <span class="inline-flex items-center">
+                    {price ? `${price}` : "Free"}
+                    <svg
+                      class="ml-2 h-4 w-4 transition group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m13 6 6 6-6 6" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <p class="mt-10 text-sm text-foreground/60">Courses coming soon.</p>
+    )}
   </main>
 </BaseLayout>
