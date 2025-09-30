@@ -3,113 +3,117 @@
 ---
 
 <header
-  class="sticky top-0 z-40 w-screen px-4 py-4 md:px-6 md:py-6 bg-background/80 backdrop-blur"
+  class="sticky top-0 z-40 w-screen px-4 py-4 md:px-6 md:py-6 frost-shell"
 >
   <div
-    class="relative bg-background rounded-2xl border border-foreground/[.08] w-6xl mx-auto"
+    class="frost-shell-container relative mx-auto max-w-6xl rounded-3xl border border-foreground/[.05] bg-transparent backdrop-blur-lg shadow-sm"
   >
-    <div class="px-4 py-2 md:px-6">
-      <div class="flex h-16 items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-          <div class="md:h-[40px] md:w-[40px] h-[48px] w-[48px] shrink-0 -my-2">
-            <svg viewBox="0 0 1191 1178" class="block h-full w-full" aria-hidden>
-              <g fill="currentColor">
-                <ellipse
-                  cx="159.468"
-                  cy="113.171"
-                  rx="159.468"
-                  ry="113.171"
-                  transform="matrix(1 0 0 -1 417 226.342)"></ellipse>
-                <ellipse
-                  cx="159.468"
-                  cy="113.171"
-                  rx="159.468"
-                  ry="113.171"
-                  transform="matrix(0 1 1 0 924.238 414.643)"></ellipse>
-                <ellipse
-                  cx="159.468"
-                  cy="113.171"
-                  rx="159.468"
-                  ry="113.171"
-                  transform="matrix(-1 0 0 1 735.937 921.88)"></ellipse>
-                <ellipse
-                  cx="159.468"
-                  cy="113.171"
-                  rx="159.468"
-                  ry="113.171"
-                  transform="matrix(0 -1 -1 0 228.7 733.579)"></ellipse>
-                <ellipse cx="575.757" cy="574.351" rx="128.757" ry="127.351"
-                ></ellipse>
-                <ellipse
-                  cx="308.178"
-                  cy="294.178"
-                  rx="128.481"
-                  ry="88.1456"
-                  transform="rotate(-45 308.178 294.178)"></ellipse>
-                <ellipse
-                  cx="841.281"
-                  cy="304.178"
-                  rx="128.481"
-                  ry="88.1456"
-                  transform="rotate(45 841.281 304.178)"></ellipse>
-                <ellipse
-                  cx="841.281"
-                  cy="827.281"
-                  rx="128.481"
-                  ry="88.1456"
-                  transform="rotate(135 841.281 827.281)"></ellipse>
-                <ellipse
-                  cx="308.178"
-                  cy="837.281"
-                  rx="128.481"
-                  ry="88.1456"
-                  transform="rotate(-135 308.178 837.281)"></ellipse>
-              </g>
-            </svg>
-          </div>
-          <span
-            class="text-2xl sm:text-3xl font-semibold tracking-tight leading-none md:block hidden -mt-2"
-            style="font-family: 'Lora', serif;">stomatiq</span
+    <div
+      class="relative w-full rounded-[26px] border border-foreground/[.06] bg-background"
+    >
+      <div class="px-4 py-2 md:px-6">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="flex items-center gap-3">
+            <div class="md:h-[40px] md:w-[40px] h-[48px] w-[48px] shrink-0 -my-2">
+              <svg viewBox="0 0 1191 1178" class="block h-full w-full" aria-hidden>
+                <g fill="currentColor">
+                  <ellipse
+                    cx="159.468"
+                    cy="113.171"
+                    rx="159.468"
+                    ry="113.171"
+                    transform="matrix(1 0 0 -1 417 226.342)"></ellipse>
+                  <ellipse
+                    cx="159.468"
+                    cy="113.171"
+                    rx="159.468"
+                    ry="113.171"
+                    transform="matrix(0 1 1 0 924.238 414.643)"></ellipse>
+                  <ellipse
+                    cx="159.468"
+                    cy="113.171"
+                    rx="159.468"
+                    ry="113.171"
+                    transform="matrix(-1 0 0 1 735.937 921.88)"></ellipse>
+                  <ellipse
+                    cx="159.468"
+                    cy="113.171"
+                    rx="159.468"
+                    ry="113.171"
+                    transform="matrix(0 -1 -1 0 228.7 733.579)"></ellipse>
+                  <ellipse cx="575.757" cy="574.351" rx="128.757" ry="127.351"
+                  ></ellipse>
+                  <ellipse
+                    cx="308.178"
+                    cy="294.178"
+                    rx="128.481"
+                    ry="88.1456"
+                    transform="rotate(-45 308.178 294.178)"></ellipse>
+                  <ellipse
+                    cx="841.281"
+                    cy="304.178"
+                    rx="128.481"
+                    ry="88.1456"
+                    transform="rotate(45 841.281 304.178)"></ellipse>
+                  <ellipse
+                    cx="841.281"
+                    cy="827.281"
+                    rx="128.481"
+                    ry="88.1456"
+                    transform="rotate(135 841.281 827.281)"></ellipse>
+                  <ellipse
+                    cx="308.178"
+                    cy="837.281"
+                    rx="128.481"
+                    ry="88.1456"
+                    transform="rotate(-135 308.178 837.281)"></ellipse>
+                </g>
+              </svg>
+            </div>
+            <span
+              class="text-2xl sm:text-3xl font-semibold tracking-tight leading-none md:block hidden -mt-2"
+              style="font-family: 'Lora', serif;">stomatiq</span
+            >
+          </a>
+          <!-- Desktop nav -->
+          <nav
+            class="hidden md:flex items-center gap-6 text-[13px] uppercase text-foreground/80"
+            style="font-family: var(--font-mono);"
           >
-        </a>
-        <!-- Desktop nav -->
-        <nav
-          class="hidden md:flex items-center gap-6 text-[13px] uppercase text-foreground/80"
-          style="font-family: var(--font-mono);"
-        >
-          <a href="/newsletter" class="hover:underline">Newsletter</a>
-          <a href="/podcast" class="hover:underline">Podcast</a>
-          <a href="/products" class="hover:underline">Products</a>
-          <a href="/courses" class="hover:underline">Courses</a>
-          <a href="/consulting" class="hover:underline">Consulting</a>
-          <!-- <a href="/merch" class="hover:underline">Merch</a> -->
-          <!-- <a href="/rss.xml" class="hover:underline">RSS</a> -->
-        </nav>
+            <a href="/newsletter" class="hover:underline">Newsletter</a>
+            <a href="/podcast" class="hover:underline">Podcast</a>
+            <a href="/products" class="hover:underline">Products</a>
+            <a href="/courses" class="hover:underline">Courses</a>
+            <a href="/consulting" class="hover:underline">Consulting</a>
+            <!-- <a href="/merch" class="hover:underline">Merch</a> -->
+            <!-- <a href="/rss.xml" class="hover:underline">RSS</a> -->
+          </nav>
 
-        <!-- Mobile menu button -->
-        <button
-          id="mobile-menu-button"
-          class="md:hidden inline-flex items-center justify-center px-3 py-2 text-sm text-foreground/80"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          aria-label="Open menu"
-        >
-          <span class="sr-only">Menu</span>
-          <svg
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-button"
+            class="md:hidden inline-flex items-center justify-center px-3 py-2 text-sm text-foreground/80"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
           >
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+            <span class="sr-only">Menu</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -249,3 +253,39 @@
       .forEach((a) => a.addEventListener("click", () => toggle(false)));
   </script>
 </header>
+
+<style is:inline>
+  .frost-shell-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgb(var(--background) / 0.24) 0%,
+      rgb(var(--background) / 0.12) 50%,
+      rgb(var(--background) / 0.08) 100%
+    );
+    pointer-events: none;
+  }
+
+  .frost-shell {
+    position: sticky;
+  }
+
+  .frost-shell::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -32px;
+    height: 48px;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--background), 0.8) 0%,
+      rgba(var(--background), 0.5) 45%,
+      rgba(var(--background), 0)
+    );
+  }
+</style>
