@@ -32,7 +32,7 @@
   --background-alt: var(--smoky);
   /* Match overlay to theme background in dark mode */
   --overlay: var(--background);
-  --texture-paper-opacity: 0.12;
+  --texture-paper-opacity: 0.09;
 }
 
 .vibe {
