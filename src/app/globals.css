@@ -16,19 +16,30 @@
   /* Light theme */
   --background: var(--linen);
   --foreground: var(--night);
+  --background-alt: var(--linen);
 }
 
 .dark {
   /* Dark theme */
   --background: var(--night);
   --foreground: var(--linen);
+  --background-alt: var(--smoky);
   /* Match overlay to theme background in dark mode */
+  --overlay: var(--background);
+}
+
+.vibe {
+  /* Vibe theme */
+  --background: 61 174 110; /* #3DAE6E */
+  --foreground: var(--linen);
+  --background-alt: 22 65 38; /* #164126 */
   --overlay: var(--background);
 }
 
 @theme inline {
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
+  --color-background-alt: rgb(var(--background-alt));
   /* Expose full palette as tokens */
   --color-linen: rgb(var(--linen));
   --color-space-cadet: rgb(var(--space-cadet));

@@ -17,6 +17,7 @@
     "posthog-js": "^1.266.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "rss": "^1.2.2"
