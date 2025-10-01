@@ -272,28 +272,19 @@ a:visited {
   font-size: clamp(1.15rem, 1.6vw, 1.4rem);
 }
 
-.heading-anchor {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: rgb(var(--foreground) / 0.45);
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-[data-heading-scope] h1:hover .heading-anchor,
-[data-heading-scope] h2:hover .heading-anchor,
-[data-heading-scope] h3:hover .heading-anchor,
-[data-heading-scope] h4:hover .heading-anchor,
-[data-heading-scope] h5:hover .heading-anchor,
-[data-heading-scope] h6:hover .heading-anchor {
+.heading-link {
+  color: inherit;
+  cursor: pointer;
   display: inline-flex;
-  color: rgb(var(--foreground) / 0.7);
+  align-items: baseline;
+  gap: 0.25rem;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
-.heading-anchor:hover {
-  transform: translateY(-1px);
-  color: rgb(var(--foreground));
+.heading-link:hover,
+.heading-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }

@@ -150,13 +150,20 @@ const { title = "stomatiq" } = Astro.props;
                 slug = ensureUniqueSlug(slug || slugifyHeading(`section-${counts.size}`), counts);
                 heading.id = slug;
               }
-              if (!heading.querySelector(".heading-anchor") && slug) {
-                const anchor = document.createElement("a");
-                anchor.className = "heading-anchor";
-                anchor.href = `#${slug}`;
-                anchor.setAttribute("aria-label", `Jump to ${text}`);
-                anchor.textContent = "¶";
-                heading.appendChild(anchor);
+              const existingLink = heading.querySelector(".heading-link");
+              if (existingLink) {
+                existingLink.setAttribute("href", `#${slug}`);
+                existingLink.setAttribute("aria-label", `Jump to ${text}`);
+                return;
+              }
+              if (slug) {
+                const link = document.createElement("a");
+                link.className = "heading-link";
+                link.href = `#${slug}`;
+                link.setAttribute("aria-label", `Jump to ${text}`);
+                const children = Array.from(heading.childNodes);
+                children.forEach((child) => link.appendChild(child));
+                heading.appendChild(link);
               }
             });
           });
