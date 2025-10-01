@@ -59,7 +59,9 @@ const canonical = resolveAbsoluteUrl(`/ai-workflow-open-spec/${section.slug}/`);
             >
               AI Workflow Open Spec
             </h1>
-            <p class="px-4 py-2 bg-black/80 inline-block text-[16px] leading-7 text-white/90 italic">
+            <p
+              class="px-4 py-2 bg-black/80 inline-block text-[16px] leading-7 text-white/90 italic"
+            >
               {heroDescription}
             </p>
           </div>
@@ -70,7 +72,7 @@ const canonical = resolveAbsoluteUrl(`/ai-workflow-open-spec/${section.slug}/`);
           <h2 class="text-sm font-semibold uppercase text-foreground/60">
             Specification Sections
           </h2>
-          <ol class="mt-4 space-y-2 text-sm">
+          <ol class="mt-4 space-y-2 text-sm !list-none !pl-0">
             {
               sections.map((item, index) => (
                 <li>

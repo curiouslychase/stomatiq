@@ -17,6 +17,19 @@ const extensionToMime = new Map<string, string>([
   [".webp", "image/webp"],
   [".gif", "image/gif"],
 ]);
+type StyleMap = Record<string, string | number>;
+type OgPrimitive = string | number | null | undefined;
+type OgChild = OgNode | OgPrimitive;
+type OgChildren = OgChild | OgChild[];
+interface OgNode {
+  type: string;
+  props?: {
+    style?: StyleMap;
+    children?: OgChildren;
+    [key: string]: unknown;
+  };
+}
+type ImageElement = Parameters<typeof ImageResponse>[0];
 const spaceMonoRegularPath = path.join(
   process.cwd(),
   "node_modules",
@@ -54,7 +67,7 @@ function getSectionMeta(slug: string) {
 
 function createOgElement(title: string, imageSrc: string) {
   const upperTitle = title.toUpperCase();
-  return {
+  const element: OgNode = {
     type: "div",
     props: {
       style: {
@@ -163,7 +176,8 @@ function createOgElement(title: string, imageSrc: string) {
         },
       ],
     },
-  } as const;
+  };
+  return element;
 }
 
 async function loadSpaceMono() {
@@ -212,7 +226,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   const { regular, bold } = await loadSpaceMono();
 
-  return new ImageResponse(element as any, {
+  return new ImageResponse(element as unknown as ImageElement, {
     width,
     height,
     fonts:

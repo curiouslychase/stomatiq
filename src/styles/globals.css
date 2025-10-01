@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
 @import "@fontsource/space-mono/400.css";
 @import "@fontsource/space-mono/700.css";
 
@@ -55,11 +58,12 @@
   --color-night: rgb(var(--night));
   --color-smoky: rgb(var(--smoky));
   --color-sandy-brown: rgb(var(--sandy-brown));
-  --font-sans: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Space Grotesk", "Inter", "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
   --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
 }
 
 body {
@@ -99,6 +103,25 @@ a:visited {
 .prose-wrapper code {
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.prose-wrapper ul,
+.prose-wrapper ol {
+  margin-left: 0;
+  padding-left: 1.5rem;
+}
+
+.prose-wrapper ul {
+  list-style-type: disc;
+}
+
+.prose-wrapper ol {
+  list-style-type: decimal;
+}
+
+.prose-wrapper li {
+  margin: 0.5rem 0;
+  list-style-position: outside;
 }
 
 /* Vertical dashed separators for courses grid at md and lg breakpoints */

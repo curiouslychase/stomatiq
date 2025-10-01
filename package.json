@@ -12,6 +12,7 @@
     "@astrojs/mdx": "^4.3.6",
     "@fontsource/geist": "^5.2.8",
     "@fontsource/geist-mono": "^5.2.7",
+    "@fontsource/space-grotesk": "^5.2.10",
     "@fontsource/space-mono": "^5.2.9",
     "@vercel/og": "^0.8.5",
     "gray-matter": "^4.0.3",
