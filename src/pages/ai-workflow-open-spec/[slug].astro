@@ -17,6 +17,7 @@ if (!section) {
 
 const sections = getAllSpecSectionsMeta();
 const pageTitle = `AI Workflow Open Spec – ${section.title}`;
+const { Content } = section;
 ---
 
 <BaseLayout title={pageTitle}>
@@ -85,8 +86,11 @@ const pageTitle = `AI Workflow Open Spec – ${section.title}`;
           </h2>
           <div
             class="spec-content space-y-6 text-[15px] leading-7 text-foreground/80 [&_strong]:text-foreground"
-            set:html={section.contentHtml}
-          />
+            data-heading-scope
+            data-heading-variant="mono"
+          >
+            <Content />
+          </div>
         </div>
       </div>
     </article>

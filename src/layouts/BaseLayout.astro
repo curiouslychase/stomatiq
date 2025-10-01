@@ -124,6 +124,43 @@ const { title = "stomatiq" } = Astro.props;
           const theme = value === "system" ? getSystem() : value;
           document.documentElement.classList.toggle("dark", theme === "dark");
         };
+        const slugifyHeading = (value) =>
+          value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-");
+        const ensureUniqueSlug = (slug, counts) => {
+          const current = counts.get(slug) ?? 0;
+          counts.set(slug, current + 1);
+          return current === 0 ? slug : `${slug}-${current}`;
+        };
+        const enhanceHeadings = () => {
+          const scopes = document.querySelectorAll("[data-heading-scope]");
+          if (!scopes.length) return;
+          scopes.forEach((scope) => {
+            const counts = new Map();
+            scope.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+              const text = heading.textContent ? heading.textContent.trim() : "";
+              if (!text) return;
+              const existingId = heading.getAttribute("id") || "";
+              let slug = existingId.length ? existingId : slugifyHeading(text);
+              if (!existingId) {
+                slug = ensureUniqueSlug(slug || slugifyHeading(`section-${counts.size}`), counts);
+                heading.id = slug;
+              }
+              if (!heading.querySelector(".heading-anchor") && slug) {
+                const anchor = document.createElement("a");
+                anchor.className = "heading-anchor";
+                anchor.href = `#${slug}`;
+                anchor.setAttribute("aria-label", `Jump to ${text}`);
+                anchor.textContent = "¶";
+                heading.appendChild(anchor);
+              }
+            });
+          });
+        };
         const init = () => {
           const select = document.getElementById("theme-select");
           const saved = localStorage.getItem("theme") || "system";
@@ -142,9 +179,10 @@ const { title = "stomatiq" } = Astro.props;
               const current = localStorage.getItem("theme") || "system";
               if (current === "system") applyTheme("system");
             });
+          enhanceHeadings();
         };
         if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", init);
+          document.addEventListener("DOMContentLoaded", init, { once: true });
         } else {
           init();
         }

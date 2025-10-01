@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { remark } from "remark";
-import html from "remark-html";
+import type { MarkdownInstance } from "astro";
 
 export type SpecSectionMeta = {
   slug: string;
@@ -11,7 +10,7 @@ export type SpecSectionMeta = {
 };
 
 export type SpecSection = SpecSectionMeta & {
-  contentHtml: string;
+  Content: MarkdownInstance<Record<string, unknown>>["Content"];
 };
 
 const specDirectory = path.join(
@@ -23,55 +22,24 @@ const specDirectory = path.join(
 
 const excludedSlugs = new Set(["table-of-contents"]);
 
-type MdastNode = {
-  type?: string;
-  depth?: number;
-  children?: MdastNode[];
-} & Record<string, unknown>;
+const specModules = import.meta.glob<
+  MarkdownInstance<Record<string, unknown>>
+>("../content/ai-workflow-open-spec/*.{md,mdx}");
 
-function remarkSpecHeadingTransform() {
-  return (tree: unknown) => {
-    if (!tree || typeof tree !== "object") return;
-    const root = tree as MdastNode;
-    if (!Array.isArray(root.children)) return;
-
-    for (let i = 0; i < root.children.length; i += 1) {
-      const node = root.children[i];
-      if (node?.type === "heading" && node.depth === 1) {
-        root.children.splice(i, 1);
-        break;
-      }
-    }
-
-    const adjustDepth = (node: MdastNode | undefined) => {
-      if (!node || typeof node !== "object") return;
-      if (node.type === "heading" && typeof node.depth === "number") {
-        if (node.depth > 1) {
-          node.depth = Math.max(1, node.depth - 1);
-        }
-      }
-      if (Array.isArray(node.children)) {
-        for (const child of node.children) {
-          adjustDepth(child);
-        }
-      }
-    };
-
-    for (const child of root.children) {
-      adjustDepth(child);
-    }
-  };
+function resolveSpecModule(fileName: string) {
+  return specModules[`../content/ai-workflow-open-spec/${fileName}`];
 }
 
 function isMarkdown(fileName: string): boolean {
-  return fileName.toLowerCase().endsWith(".md");
+  const lower = fileName.toLowerCase();
+  return lower.endsWith(".md") || lower.endsWith(".mdx");
 }
 
 function parseFileName(fileName: string): {
   order: number;
   slug: string;
 } | null {
-  const match = fileName.match(/^(\d+)-(.*)\.md$/i);
+  const match = fileName.match(/^(\d+)-(.*)\.(md|mdx)$/i);
   if (!match) return null;
   const [, orderPart, slugPart] = match;
   return { order: Number.parseInt(orderPart, 10), slug: slugPart };
@@ -131,13 +99,12 @@ export async function getSpecSection(
   if (!entry) return null;
   const filePath = path.join(specDirectory, entry.fileName);
   if (!fs.existsSync(filePath)) return null;
-  const markdown = fs.readFileSync(filePath, "utf8");
-  const processed = await remark()
-    .use(remarkSpecHeadingTransform)
-    .use(html)
-    .process(markdown);
-  const contentHtml = processed.toString();
-  return { ...entry, contentHtml } satisfies SpecSection;
+  const loader = resolveSpecModule(entry.fileName);
+  if (!loader) return null;
+  const module = await loader();
+  const { Content } = module;
+  if (!Content) return null;
+  return { ...entry, Content } satisfies SpecSection;
 }
 
 export function invalidateSpecCache(): void {

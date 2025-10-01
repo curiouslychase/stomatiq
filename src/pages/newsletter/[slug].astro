@@ -14,6 +14,7 @@ const post = await getPost(String(slug));
 if (!post) {
   throw Astro.redirect("/newsletter/");
 }
+const { Content } = post;
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -48,7 +49,7 @@ const heroDescription =
           />
           <div class="relative space-y-4 px-6 md:px-10">
             <h1
-              class="bg-black/80 p-4 text-4xl font-mono uppercase tracking-[0.2em] md:text-5xl w-fit"
+              class="bg-black/80 p-4 text-4xl font-mono uppercase md:text-5xl w-fit"
             >
               {post.title}
             </h1>
@@ -150,12 +151,11 @@ const heroDescription =
           </div>
         </aside>
         <div
-          class="prose-wrapper mx-auto max-w-3xl space-y-6 text-[15px] leading-7 text-foreground/80 [&_strong]:text-foreground lg:mx-0 lg:flex-1"
+          class="prose-wrapper w-full space-y-6 text-lg leading-8 text-foreground/80 [&_strong]:text-foreground lg:flex-1"
         >
-          <div
-            class="space-y-6 font-serif text-foreground"
-            set:html={post.contentHtml}
-          />
+          <div class="space-y-6 font-serif text-foreground" data-heading-scope>
+            <Content />
+          </div>
         </div>
       </div>
     </article>

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.6",
     "@fontsource/geist": "^5.2.8",
     "@fontsource/geist-mono": "^5.2.7",
     "gray-matter": "^4.0.3",
