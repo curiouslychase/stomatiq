@@ -21,6 +21,48 @@ const specDirectory = path.join(
   "ai-workflow-open-spec",
 );
 
+const excludedSlugs = new Set(["table-of-contents"]);
+
+type MdastNode = {
+  type?: string;
+  depth?: number;
+  children?: MdastNode[];
+} & Record<string, unknown>;
+
+function remarkSpecHeadingTransform() {
+  return (tree: unknown) => {
+    if (!tree || typeof tree !== "object") return;
+    const root = tree as MdastNode;
+    if (!Array.isArray(root.children)) return;
+
+    for (let i = 0; i < root.children.length; i += 1) {
+      const node = root.children[i];
+      if (node?.type === "heading" && node.depth === 1) {
+        root.children.splice(i, 1);
+        break;
+      }
+    }
+
+    const adjustDepth = (node: MdastNode | undefined) => {
+      if (!node || typeof node !== "object") return;
+      if (node.type === "heading" && typeof node.depth === "number") {
+        if (node.depth > 1) {
+          node.depth = Math.max(1, node.depth - 1);
+        }
+      }
+      if (Array.isArray(node.children)) {
+        for (const child of node.children) {
+          adjustDepth(child);
+        }
+      }
+    };
+
+    for (const child of root.children) {
+      adjustDepth(child);
+    }
+  };
+}
+
 function isMarkdown(fileName: string): boolean {
   return fileName.toLowerCase().endsWith(".md");
 }
@@ -55,6 +97,7 @@ function loadEntries(): SpecSectionMeta[] {
     .map((fileName) => {
       const parsed = parseFileName(fileName);
       if (!parsed) return null;
+      if (excludedSlugs.has(parsed.slug)) return null;
       const filePath = path.join(specDirectory, fileName);
       const title = extractTitle(filePath);
       return {
@@ -89,7 +132,10 @@ export async function getSpecSection(
   const filePath = path.join(specDirectory, entry.fileName);
   if (!fs.existsSync(filePath)) return null;
   const markdown = fs.readFileSync(filePath, "utf8");
-  const processed = await remark().use(html).process(markdown);
+  const processed = await remark()
+    .use(remarkSpecHeadingTransform)
+    .use(html)
+    .process(markdown);
   const contentHtml = processed.toString();
   return { ...entry, contentHtml } satisfies SpecSection;
 }

@@ -7,7 +7,7 @@
   --linen: 237 239 237; /* #EDEFED */
   --space-cadet: 43 45 66; /* legacy token */
   --cool-gray: 131 129 150; /* legacy token */
-  --night: 3 23 11; /* #03170B */
+  --night: 0 9 0; /* #04170B */
   --smoky: 10 13 6;
   --sandy-brown: 244 175 66;
   /* Overlay color for mobile menu (light mode) */
@@ -205,4 +205,20 @@ a:visited {
     transform: translateX(-0.5px);
     display: block;
   }
+}
+
+.spec-content h1,
+.spec-content h2,
+.spec-content h3,
+.spec-content h4,
+.spec-content h5,
+.spec-content h6 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: rgb(var(--foreground));
+}
+
+.spec-content h6 {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
