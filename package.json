@@ -12,6 +12,8 @@
     "@astrojs/mdx": "^4.3.6",
     "@fontsource/geist": "^5.2.8",
     "@fontsource/geist-mono": "^5.2.7",
+    "@fontsource/space-mono": "^5.2.9",
+    "@vercel/og": "^0.8.5",
     "gray-matter": "^4.0.3",
     "posthog-js": "^1.268.9",
     "remark": "^15.0.1",

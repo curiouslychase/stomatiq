@@ -18,9 +18,26 @@ if (!section) {
 const sections = getAllSpecSectionsMeta();
 const pageTitle = `AI Workflow Open Spec – ${section.title}`;
 const { Content } = section;
+const heroDescription =
+  "A common language for weaving together modular programmatic steps with agentic intelligence.";
+
+const resolveAbsoluteUrl = (pathname: string) => {
+  const normalized = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  if (Astro.site) return new URL(normalized, Astro.site).toString();
+  if (Astro.url) return new URL(normalized, Astro.url).toString();
+  return normalized;
+};
+
+const ogImage = resolveAbsoluteUrl(`/api/spec-og/${section.slug}.png`);
+const canonical = resolveAbsoluteUrl(`/ai-workflow-open-spec/${section.slug}/`);
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout
+  title={pageTitle}
+  ogImage={ogImage}
+  canonical={canonical}
+  description={heroDescription}
+>
   <main
     class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-10 lg:flex-row lg:px-0"
   >
@@ -42,11 +59,8 @@ const { Content } = section;
             >
               AI Workflow Open Spec
             </h1>
-            <p
-              class="px-4 py-2 bg-black/80 inline-block text-[16px] leading-7 text-white/90 italic"
-            >
-              A common language for weaving together modular programmatic steps
-              with agentic intelligence.
+            <p class="px-4 py-2 bg-black/80 inline-block text-[16px] leading-7 text-white/90 italic">
+              {heroDescription}
             </p>
           </div>
         </div>
@@ -77,11 +91,6 @@ const { Content } = section;
           </ol>
         </aside>
         <div>
-          <h2
-            class="mb-6 text-3xl font-semibold tracking-tight uppercase font-mono"
-          >
-            {section.title}
-          </h2>
           <div
             class="spec-content space-y-6 text-[15px] leading-7 text-foreground/80 [&_strong]:text-foreground"
             data-heading-scope

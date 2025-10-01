@@ -3,7 +3,17 @@ import "../styles/globals.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import PosthogLoader from "../components/PosthogLoader.astro";
-const { title = "stomatiq" } = Astro.props;
+const {
+  title = "stomatiq",
+  description,
+  ogImage,
+  ogType = "website",
+  canonical,
+  siteName = "stomatiq",
+  twitterCard,
+} = Astro.props;
+const resolvedTwitterCard = twitterCard ?? (ogImage ? "summary_large_image" : "summary");
+
 ---
 
 <!doctype html>
@@ -12,6 +22,20 @@ const { title = "stomatiq" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content={ogType} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:site_name" content={siteName || "stomatiq"} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content={resolvedTwitterCard} />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
