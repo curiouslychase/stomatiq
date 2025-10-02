@@ -1,6 +1,10 @@
 import { redirect } from 'next/navigation';
 import { getAllSpecSectionsMeta } from '@/lib/spec';
 
+export const dynamic = 'force-static';
+
+const INTRO_SLUG = 'introduction';
+
 export const metadata = {
   title: 'AI Workflow Open Spec | stomatiq',
 };
@@ -8,8 +12,12 @@ export const metadata = {
 export default function AIWorkflowOpenSpecPage() {
   const sections = getAllSpecSectionsMeta();
 
+  if (sections.some((section) => section.slug === INTRO_SLUG)) {
+    redirect(`/ai-workflow-open-spec/${INTRO_SLUG}`);
+  }
+
   if (sections.length) {
-    redirect(`/ai-workflow-open-spec/${sections[0].slug}/`);
+    redirect(`/ai-workflow-open-spec/${sections[0].slug}`);
   }
 
   return (

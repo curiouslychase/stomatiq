@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllSpecSectionsMeta, getSpecSection } from '@/lib/spec';
 
+export const dynamic = 'force-static';
+
 const heroDescription = "A common language for weaving together modular programmatic steps with agentic intelligence.";
 
 export async function generateStaticParams() {

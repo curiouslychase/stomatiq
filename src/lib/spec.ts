@@ -2,6 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
+import LawCard from "@/components/mdx/LawCard";
+import EquationCard from "@/components/mdx/EquationCard";
+import IterationCard from "@/components/mdx/IterationCard";
+import DomainCard from "@/components/mdx/DomainCard";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export type SpecSectionMeta = {
   slug: string;
@@ -14,13 +19,24 @@ export type SpecSection = SpecSectionMeta & {
   Content: React.ComponentType;
 };
 
-const specDirectory = path.join(
-  process.cwd(),
-  "..",
-  "src",
-  "content",
-  "ai-workflow-open-spec",
-);
+const specDirectory = resolveSpecDirectory();
+
+function resolveSpecDirectory(): string {
+  const candidates = [
+    path.join(process.cwd(), "content", "ai-workflow-open-spec"),
+    path.join(process.cwd(), "src", "content", "ai-workflow-open-spec"),
+    path.join(process.cwd(), "..", "content", "ai-workflow-open-spec"),
+    path.join(process.cwd(), "..", "src", "content", "ai-workflow-open-spec"),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  return candidates[0];
+}
 
 const excludedSlugs = new Set(["table-of-contents"]);
 
@@ -101,6 +117,14 @@ export async function getSpecSection(
       ...runtime,
       development: process.env.NODE_ENV === 'development',
       baseUrl: import.meta.url,
+      // @ts-expect-error - MDX component typing
+      useMDXComponents: () => ({
+        LawCard,
+        EquationCard,
+        IterationCard,
+        DomainCard,
+        NewsletterSubscribe,
+      }),
     });
 
     return { ...entry, Content } satisfies SpecSection;
