@@ -221,7 +221,10 @@ export async function GET(request: Request, context: ParamsContext) {
     getBoldFont(),
   ]);
 
-  const title = (post?.title ?? specMeta?.title ?? slug).toUpperCase();
+  const baseTitle = post?.title ?? specMeta?.title ?? slug;
+  const title = specMeta
+    ? `AI WORKFLOW OPEN SPEC: ${baseTitle.toUpperCase()}`
+    : baseTitle.toUpperCase();
   const description =
     post?.description ??
     post?.excerpt ??
