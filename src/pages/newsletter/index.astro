@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsletterSubscribe from "../../components/NewsletterSubscribe.astro";
 import { getAllPostsMeta } from "../../lib/posts";
 
 const posts = getAllPostsMeta();
@@ -28,6 +29,7 @@ const formatDate = (value: string) => {
         >
           Essays and updates on product, engineering, and AI at Stomatiq.
         </p>
+        <NewsletterSubscribe class="mt-8" />
       </header>
 
       {

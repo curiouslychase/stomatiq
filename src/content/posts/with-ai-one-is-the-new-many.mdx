@@ -13,6 +13,7 @@ import LawCard from "../../components/mdx/LawCard.astro";
 import EquationCard from "../../components/mdx/EquationCard.astro";
 import IterationCard from "../../components/mdx/IterationCard.astro";
 import DomainCard from "../../components/mdx/DomainCard.astro";
+import NewsletterSubscribe from "../../components/NewsletterSubscribe.astro";
 
 There's an old African proverb: "If you want to go fast, go alone. If you want to go far, go together."
 
@@ -226,50 +227,6 @@ This possible third way is distributed creation without coordination overhead.
 What does this look like in practice?
 
 Instead of one person owning and orchestrating everything, they own and orchestrate major components of the business.
-
-<div class="my-10 overflow-hidden rounded-3xl border border-foreground/12 bg-background-alt/50">
-  <div class="border-b border-foreground/10 px-8 py-8">
-    <div class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">Sovereign Domains Model</div>
-    <p class="mt-4 max-w-2xl text-sm leading-7 text-foreground/80">Federated ownership with AI acceleration. Each owner ships independently, composes cohesively.</p>
-  </div>
-  <div class="relative px-6 py-10">
-    <div class="absolute left-9 top-10 bottom-10 hidden md:block">
-      <span class="block h-full w-px bg-foreground/12"></span>
-    </div>
-    <div class="flex flex-col gap-10">
-      <DomainCard
-        index="01"
-        title="API Owner"
-        items={[
-          "Defines and maintains service contracts",
-          "Runs autonomous test and deploy cycles",
-          "Publishes change logs as the interface",
-        ]}
-      />
-      <DomainCard
-        index="02"
-        title="Interface Owner"
-        items={[
-          "Shapes end-to-end user journeys",
-          "Generates variants and ships live experiments",
-          "Consumes APIs without handoffs",
-        ]}
-      />
-      <DomainCard
-        index="03"
-        title="Operations Owner"
-        items={[
-          "Automates onboarding and support flows",
-          "Monitors feedback loops in real time",
-          "Closes loops with policy-driven playbooks",
-        ]}
-      />
-    </div>
-  </div>
-  <div class="border-t border-foreground/10 px-8 py-6 text-center font-mono text-xs uppercase tracking-[0.12em] text-foreground/60">
-    Composed via clear contracts, zero overlap
-  </div>
-</div>
 
 One person owns the API. One person owns the interface. One person owns customer operations. One person owns brand design. Not components or functions, complete domains with clear edges. Each person works alone with AI, at maximum velocity, but their outputs compose into something larger.
 

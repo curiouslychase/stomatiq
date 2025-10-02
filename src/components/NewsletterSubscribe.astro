@@ -1,0 +1,259 @@
+---
+interface Props {
+  variant?: "default" | "article";
+  layout?: "inline" | "stacked";
+  heading?: string;
+  description?: string;
+  class?: string;
+  buttonLabel?: string;
+  placeholder?: string;
+  action?: string;
+  successMessage?: string;
+  duplicateMessage?: string;
+  errorMessage?: string;
+  networkMessage?: string;
+  emptyMessage?: string;
+  subscribingMessage?: string;
+  formId?: string;
+}
+
+const rawProps = Astro.props as Props;
+const variant = rawProps.variant ?? "default";
+const layout = rawProps.layout ?? (variant === "article" ? "stacked" : "inline");
+const isArticle = variant === "article";
+
+const heading = rawProps.heading ?? (isArticle ? "Subscribe to the newsletter" : undefined);
+const description = rawProps.description ??
+  (isArticle
+    ? "New essays and updates—delivered occasionally."
+    : "Get new essays and updates delivered occasionally.");
+const className = rawProps.class ?? "";
+const buttonLabel = rawProps.buttonLabel ?? "Subscribe";
+const placeholder = rawProps.placeholder ?? "you@example.com";
+const action = rawProps.action ?? "/api/newsletter/subscribe";
+const successMessage = rawProps.successMessage ?? "You're subscribed!";
+const duplicateMessage = rawProps.duplicateMessage ?? "You're already subscribed.";
+const errorMessage = rawProps.errorMessage ?? "Something went wrong.";
+const networkMessage = rawProps.networkMessage ?? "Network error. Try again.";
+const emptyMessage = rawProps.emptyMessage ?? "Enter an email address.";
+const subscribingMessage = rawProps.subscribingMessage ?? "Subscribing…";
+const providedFormId = rawProps.formId;
+
+const formId = providedFormId ?? (globalThis.crypto?.randomUUID?.() ?? `newsletter-${Math.random().toString(36).slice(2)}`);
+
+const wrapperClasses = [
+  "newsletter-subscribe",
+  "w-full",
+  isArticle
+    ? "rounded-3xl border border-foreground/12 bg-background-alt/60 p-6 shadow-sm"
+    : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const formClasses = [
+  layout === "inline"
+    ? "grid w-full max-w-xl gap-3 sm:grid-cols-[1fr_auto]"
+    : isArticle
+    ? "flex w-full flex-col gap-3"
+    : "flex w-full max-w-lg flex-col gap-3 sm:flex-row sm:items-center",
+  isArticle ? "mt-4" : "mt-6",
+]
+  .filter(Boolean)
+  .join(" ");
+
+const inputWrapperClasses =
+  layout === "inline"
+    ? "sm:col-span-1"
+    : isArticle
+    ? "w-full"
+    : "sm:flex-1 w-full";
+
+const buttonClasses = [
+  "inline-flex items-center justify-center rounded-md px-5 py-3 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground",
+  isArticle
+    ? "self-start border border-foreground/30 bg-background text-sm font-semibold uppercase tracking-[0.18em] text-foreground hover:bg-foreground/10"
+    : "border border-foreground bg-foreground text-xs font-semibold uppercase tracking-[0.25em] text-background hover:bg-foreground/90",
+].join(" ");
+
+const statusClasses = [
+  layout === "inline"
+    ? "sm:col-span-2 text-xs uppercase tracking-[0.25em]"
+    : isArticle
+    ? "text-[13px] leading-6"
+    : "text-xs uppercase tracking-[0.25em]",
+  "transition-colors",
+  isArticle ? "text-foreground/60" : "text-foreground/50",
+].join(" ");
+
+const inputClasses = [
+  "w-full rounded-md px-4 py-3 text-sm text-foreground/90 shadow-sm outline-none transition focus:ring-2 focus:ring-foreground/30",
+  isArticle
+    ? "border border-foreground/12 bg-background"
+    : "border border-foreground/15 bg-background",
+].join(" ");
+
+const headingClass = isArticle
+  ? "text-xs font-semibold uppercase tracking-[0.18em] text-foreground/70"
+  : "text-sm font-semibold uppercase tracking-[0.3em] text-foreground/60";
+---
+
+<section
+  class={wrapperClasses}
+  data-newsletter-wrapper={formId}
+  data-variant={variant}
+>
+  {heading && (
+    <div class="text-center sm:text-left">
+      <h2 class={headingClass}>
+        {heading}
+      </h2>
+    </div>
+  )}
+  <form
+    class={formClasses}
+    method="post"
+    action={action}
+    data-newsletter-form={formId}
+    novalidate
+  >
+    <div class={inputWrapperClasses}>
+      <label class="sr-only" for={`newsletter-email-${formId}`}>
+        Email address
+      </label>
+      <input
+        id={`newsletter-email-${formId}`}
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+        placeholder={placeholder}
+        class={inputClasses}
+      />
+    </div>
+    <button type="submit" class={buttonClasses}>
+      {buttonLabel}
+    </button>
+    <p
+      data-status
+      class={statusClasses}
+      role="status"
+      aria-live="polite"
+      data-default-message={description}
+    >
+      {description}
+    </p>
+  </form>
+</section>
+
+<script is:inline>
+  (() => {
+    const selector = ${JSON.stringify(`[data-newsletter-form="${formId}"]`)};
+    const messages = {
+      empty: ${JSON.stringify(emptyMessage)},
+      subscribing: ${JSON.stringify(subscribingMessage)},
+      duplicate: ${JSON.stringify(duplicateMessage)},
+      success: ${JSON.stringify(successMessage)},
+      fallbackError: ${JSON.stringify(errorMessage)},
+      network: ${JSON.stringify(networkMessage)},
+    };
+
+    const enhance = () => {
+      if (!window.fetch) return;
+      const form = document.querySelector(selector);
+      if (!form || form.dataset.enhanced === 'true') return;
+
+      const status = form.querySelector('[data-status]');
+      const submit = form.querySelector('button[type="submit"]');
+      const wrapper = form.closest('[data-newsletter-wrapper]');
+      if (!status || !submit) return;
+
+      const defaultMessage = status.dataset.defaultMessage || status.textContent || '';
+      const variant = wrapper?.dataset.variant || 'default';
+      const endpoint = form.getAttribute('data-endpoint') || form.getAttribute('action') || ${JSON.stringify(action)};
+
+      const classes = {
+        success: variant === 'article' ? 'text-emerald-400' : 'text-emerald-500',
+        error: 'text-red-500',
+        idle: variant === 'article' ? 'text-foreground/60' : 'text-foreground/50',
+      };
+
+      const applyTone = (tone) => {
+        status.classList.remove(classes.success, classes.error, classes.idle);
+        status.classList.add(classes[tone] || classes.idle);
+      };
+
+      const setStatus = (message, tone) => {
+        status.textContent = message;
+        status.dataset.tone = tone;
+        applyTone(tone);
+      };
+
+      const submitLabel = submit.textContent || submit.innerText || ${JSON.stringify(buttonLabel)};
+
+      const setLoadingState = (loading) => {
+        submit.disabled = loading;
+        submit.classList.toggle('opacity-70', loading);
+        submit.classList.toggle('pointer-events-none', loading);
+        form.classList.toggle('is-loading', loading);
+        if (loading) {
+          submit.setAttribute('data-original-label', submitLabel);
+        } else {
+          const original = submit.getAttribute('data-original-label');
+          if (original) submit.textContent = original;
+        }
+      };
+
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const email = String(formData.get('email') ?? '').trim();
+        if (!email.length) {
+          setStatus(messages.empty, 'error');
+          return;
+        }
+        setLoadingState(true);
+        setStatus(messages.subscribing, 'idle');
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (response.ok && payload?.success) {
+            form.reset();
+            setStatus(payload?.duplicate ? messages.duplicate : messages.success, 'success');
+          } else {
+            const reason = typeof payload?.error === 'string' && payload.error.trim().length
+              ? payload.error
+              : messages.fallbackError;
+            setStatus(reason, 'error');
+          }
+        } catch (error) {
+          console.error('Newsletter subscribe failed', error);
+          setStatus(messages.network, 'error');
+        } finally {
+          setLoadingState(false);
+          if (status.dataset.tone === 'success') {
+            setTimeout(() => setStatus(defaultMessage, 'idle'), 6000);
+          }
+        }
+      };
+
+      form.addEventListener('submit', handleSubmit);
+      form.dataset.enhanced = 'true';
+      setStatus(defaultMessage, 'idle');
+    };
+
+    const readyStates = ['interactive', 'complete'];
+    if (readyStates.includes(document.readyState)) {
+      enhance();
+    } else {
+      document.addEventListener('DOMContentLoaded', enhance, { once: true });
+    }
+    document.addEventListener('astro:after-swap', enhance);
+    document.addEventListener('astro:page-load', enhance);
+  })();
+</script>
