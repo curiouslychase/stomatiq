@@ -5,60 +5,15 @@ import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export default function Home() {
   const posts = getAllPostsMeta();
-  const [featured, ...otherPosts] = posts;
-  const sidebarPosts = otherPosts.slice(0, 2);
-  const recentEssays = posts.slice(0, 4);
+  const [featured] = posts;
+  const recentEssays = posts.slice(1, 6);
 
   return (
     <main className="min-h-screen">
-      <div className="mx-auto max-w-[1600px] px-8 py-12">
+      <div className="mx-auto max-w-6xl py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Sidebar - Smaller Posts */}
-          <aside className="lg:col-span-3 space-y-8">
-            {sidebarPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/posts/${post.slug}`}
-                className="block group"
-              >
-                <article className="space-y-4">
-                  {post.cover && (
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                      <Image
-                        src={post.cover}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform group-hover:scale-105"
-                      />
-                    </div>
-                  )}
-                  <div className="space-y-2">
-                    <div className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}{" "}
-                      IN {post.category || "ESSAYS"}
-                    </div>
-                    <h2 className="text-xl font-serif leading-tight group-hover:opacity-80 transition-opacity">
-                      {post.title}
-                    </h2>
-                    {post.author && (
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="font-medium text-foreground/80">
-                          {post.author.toUpperCase()}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </aside>
-
-          {/* Center - Featured Post */}
-          <section className="lg:col-span-6">
+          {/* Featured Post */}
+          <section className="lg:col-span-7">
             {featured && (
               <Link href={`/posts/${featured.slug}`} className="block group">
                 <article className="space-y-6">
@@ -103,7 +58,7 @@ export default function Home() {
           </section>
 
           {/* Right Sidebar - Recent Essays */}
-          <aside className="lg:col-span-3">
+          <aside className="lg:col-span-5">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold uppercase tracking-wider">
@@ -120,7 +75,7 @@ export default function Home() {
                     href={`/posts/${post.slug}`}
                     className="block group"
                   >
-                    <article className="flex gap-4">
+                    <article className="flex gap-4 items-start">
                       {post.thumbnail && (
                         <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded">
                           <Image
@@ -132,13 +87,16 @@ export default function Home() {
                         </div>
                       )}
                       <div className="flex-1 space-y-1">
-                        <h3 className="text-base font-serif leading-tight group-hover:opacity-80 transition-opacity">
+                        <h3
+                          className="text-sm font-bold leading-tight group-hover:opacity-80 transition-opacity uppercase"
+                          style={{ fontFamily: "var(--font-mono)" }}
+                        >
                           {post.title}
                         </h3>
-                        {post.author && (
-                          <div className="text-xs font-medium text-foreground/60">
-                            {post.author.toUpperCase()}
-                          </div>
+                        {post.excerpt && (
+                          <p className="text-xs leading-relaxed text-foreground/60">
+                            {post.excerpt}
+                          </p>
                         )}
                       </div>
                     </article>

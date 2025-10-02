@@ -55,4 +55,5 @@ Readers practice sharpening their judgment with AI as their amplifier.
 
 ## Changelog
 
+- 2025-10-02: Created initial MDX scaffolding with frontmatter and opening sentence at /content/posts/training-your-taste-and-judgment.mdx
 - 2025-10-02: Created work item from content planning document

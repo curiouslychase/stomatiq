@@ -54,4 +54,5 @@ Readers leave knowing how to structure their day as a director of systems.
 
 ## Changelog
 
+- 2025-10-02: Created initial MDX scaffolding with frontmatter and opening sentence at /content/posts/the-directors-schedule.mdx
 - 2025-10-02: Created work item from content planning document
