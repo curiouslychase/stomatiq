@@ -11,7 +11,10 @@ export default tseslint.config(
       "node_modules/**",
       "dist/**",
       "public/**",
-      ".astro/**"
+      ".astro/**",
+      ".next/**",
+      "src/.next/**",
+      "next-src/.next/**"
     ],
   },
   js.configs.recommended,

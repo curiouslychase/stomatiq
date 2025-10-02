@@ -1,12 +1,14 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import NewsletterSubscribe from '@/components/NewsletterSubscribe';
-import { getAllPostsMeta } from '@/lib/posts';
+import Link from "next/link";
+import Image from "next/image";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
+import { getAllPostsMeta } from "@/lib/posts";
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
+export const dynamic = "force-static";
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
 });
 
 const formatDate = (value: string) => {

@@ -1,13 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { compile } from '@mdx-js/mdx';
-import * as runtime from 'react/jsx-runtime';
-import { evaluate } from '@mdx-js/mdx';
-import LawCard from '../../components/mdx/LawCard';
-import EquationCard from '../../components/mdx/EquationCard';
-import IterationCard from '../../components/mdx/IterationCard';
-import DomainCard from '../../components/mdx/DomainCard';
+import * as runtime from "react/jsx-runtime";
+import { evaluate } from "@mdx-js/mdx";
+import LawCard from "../components/mdx/LawCard";
+import EquationCard from "../components/mdx/EquationCard";
+import IterationCard from "../components/mdx/IterationCard";
+import DomainCard from "../components/mdx/DomainCard";
 
 export type PostMeta = {
   slug: string;
@@ -30,7 +29,7 @@ export type Post = PostMeta & {
 };
 
 // Posts are in the parent src/content/posts directory
-const postsDirectory = path.join(process.cwd(), "..", "src", "content", "posts");
+const postsDirectory = path.join(process.cwd(), "content", "posts");
 
 function toPostMeta(slug: string, data: Record<string, unknown>): PostMeta {
   const title = String(data.title ?? slug);
@@ -43,7 +42,7 @@ function toPostMeta(slug: string, data: Record<string, unknown>): PostMeta {
   const cover = data.cover ? String(data.cover) : undefined;
   const thumbnail = data.thumbnail
     ? String(data.thumbnail)
-    : cover ?? undefined;
+    : (cover ?? undefined);
   const author = data.author ? String(data.author) : undefined;
   const authorAvatar = data.authorAvatar
     ? String(data.authorAvatar)
@@ -88,6 +87,7 @@ export async function getPost(slug: string): Promise<Post | null> {
   const fullPathMd = path.join(postsDirectory, `${slug}.md`);
   const fullPathMdx = path.join(postsDirectory, `${slug}.mdx`);
   const fullPath = fs.existsSync(fullPathMd) ? fullPathMd : fullPathMdx;
+  console.log(fullPath);
   if (!fullPath || !fs.existsSync(fullPath)) return null;
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -95,15 +95,14 @@ export async function getPost(slug: string): Promise<Post | null> {
   const meta = toPostMeta(slug, data);
 
   // Replace class= with className= in JSX/HTML elements
-  const cleanedContent = content.replace(/\bclass=/g, 'className=');
+  const cleanedContent = content.replace(/\bclass=/g, "className=");
 
   // Compile MDX to React component
   try {
     const { default: Content } = await evaluate(cleanedContent, {
       ...runtime,
-      development: process.env.NODE_ENV === 'development',
+      development: process.env.NODE_ENV === "development",
       baseUrl: import.meta.url,
-      // @ts-ignore - MDX component types
       useMDXComponents: () => ({
         LawCard,
         EquationCard,

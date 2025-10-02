@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useId } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,7 +44,8 @@ export default function NewsletterSubscribe({
   const [status, setStatus] = useState('');
   const [tone, setTone] = useState<'idle' | 'success' | 'error'>('idle');
   const [loading, setLoading] = useState(false);
-  const [formIdState] = useState(providedFormId || `newsletter-${Math.random().toString(36).slice(2)}`);
+  const generatedId = useId();
+  const formId = providedFormId ?? `newsletter-${generatedId.replace(/[:]/g, '')}`;
 
   const isArticle = variant === 'article';
   const layout = layoutProp ?? (isArticle ? 'stacked' : 'inline');
@@ -139,7 +140,7 @@ export default function NewsletterSubscribe({
   return (
     <section
       className={wrapperClasses}
-      data-newsletter-wrapper={formIdState}
+      data-newsletter-wrapper={formId}
       data-variant={variant}
     >
       {heading && (
@@ -153,15 +154,15 @@ export default function NewsletterSubscribe({
       <form
         className={formClasses}
         onSubmit={handleSubmit}
-        data-newsletter-form={formIdState}
+        data-newsletter-form={formId}
         noValidate
       >
         <div className={layout === 'inline' ? 'sm:col-span-1' : 'w-full'}>
-          <Label className="sr-only" htmlFor={`newsletter-email-${formIdState}`}>
+          <Label className="sr-only" htmlFor={`newsletter-email-${formId}`}>
             Email address
           </Label>
           <Input
-            id={`newsletter-email-${formIdState}`}
+            id={`newsletter-email-${formId}`}
             name="email"
             type="email"
             autoComplete="email"

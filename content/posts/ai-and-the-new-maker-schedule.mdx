@@ -10,15 +10,13 @@ author: Chase Adams
 category: Future of Work
 ---
 
-import EquationCard from "../../components/mdx/EquationCard.astro";
-import NewsletterSubscribe from "../../components/NewsletterSubscribe.astro";
-
 **Paul Graham's taxonomy is dead.**
 
-In 2009, Paul Graham divided knowledge workers into two categories: 
+In 2009, Paul Graham divided knowledge workers into two categories:
+
 - **Makers**: who need long blocks of uninterrupted time
-- **Managers**: who live in hourly fragments coordinating others 
- 
+- **Managers**: who live in hourly fragments coordinating others
+
 This binary has organized fifteen years of productivity discourse, spawned countless blog posts about deep work, and justified a million declined meeting requests.
 
 Every creative professional learned to guard their maker time like a temple. Every executive accepted their calendar's transformation into confetti.
@@ -50,11 +48,11 @@ The manager's equation runs on different physics—impact flows from the quality
   dotText="Coordination leverage, parallel through people"
 />
 
-These equations assumed mutual exclusivity. Increase focus hours, decrease coordination points. The trade-off was law. It was encoded in our calendars, our job titles, our very identity. 
+These equations assumed mutual exclusivity. Increase focus hours, decrease coordination points. The trade-off was law. It was encoded in our calendars, our job titles, our very identity.
 
 You were a maker or a manager, rarely both, never simultaneously.
 
-But what happens when an AI agent can maintain multiple parallel threads of execution while you sleep? 
+But what happens when an AI agent can maintain multiple parallel threads of execution while you sleep?
 
 When it can write code in one context window, analyze markets in another, draft presentations in a third, all while maintaining perfect recall of your strategic intent?
 
@@ -81,7 +79,10 @@ The processing speed tells another story. A senior developer might refactor 100 
         <span>60 minutes</span>
       </div>
       <div class="mt-3 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-foreground/70" style="width: 100%;"></div>
+        <div
+          class="h-full rounded-full bg-foreground/70"
+          style="width: 100%;"
+        ></div>
       </div>
     </div>
     <div>
@@ -90,7 +91,10 @@ The processing speed tells another story. A senior developer might refactor 100 
         <span>12 seconds</span>
       </div>
       <div class="mt-3 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-foreground" style="width: 3%; min-width: 10px;"></div>
+        <div
+          class="h-full rounded-full bg-foreground"
+          style="width: 3%; min-width: 10px;"
+        ></div>
       </div>
     </div>
     <div class="rounded-2xl bg-foreground/5 px-4 py-3 text-center text-xs font-semibold tracking-[0.1em]">
@@ -100,7 +104,7 @@ The processing speed tells another story. A senior developer might refactor 100 
   </div>
 </div>
 
-This isn't automation. Automation replaces repetitive tasks. 
+This isn't automation. Automation replaces repetitive tasks.
 
 This replaces the iterative loop itself.
 
@@ -121,7 +125,9 @@ The director's schedule has no blocks. No maker time, no manager time. Instead, 
 Traditional productivity followed Amdahl's Law: the speedup of a system is limited by its sequential components. If 90% of your work could be parallelized but 10% remained sequential, your maximum speedup was 10x, regardless of resources thrown at it.
 
 <div class="my-6 rounded-3xl border border-foreground/10 bg-background-alt/40 p-5 text-foreground">
-  <div class="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80">Amdahl's Law Demo</div>
+  <div class="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80">
+    Amdahl's Law Demo
+  </div>
   <div class="mt-4 space-y-4 text-sm">
     <div>
       <div class="flex items-baseline justify-between font-mono text-xs uppercase tracking-[0.08em]">
@@ -129,7 +135,10 @@ Traditional productivity followed Amdahl's Law: the speedup of a system is limit
         <span>90%</span>
       </div>
       <div class="mt-2 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-emerald-400/70" style="width: 90%;"></div>
+        <div
+          class="h-full rounded-full bg-emerald-400/70"
+          style="width: 90%;"
+        ></div>
       </div>
     </div>
     <div>
@@ -138,7 +147,10 @@ Traditional productivity followed Amdahl's Law: the speedup of a system is limit
         <span>10%</span>
       </div>
       <div class="mt-2 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-red-400/70" style="width: 10%; min-width: 14px;"></div>
+        <div
+          class="h-full rounded-full bg-red-400/70"
+          style="width: 10%; min-width: 14px;"
+        ></div>
       </div>
     </div>
     <div class="flex flex-wrap items-center justify-between rounded-2xl bg-foreground/5 px-4 py-3 font-mono text-xs uppercase tracking-[0.12em]">
@@ -151,7 +163,9 @@ Traditional productivity followed Amdahl's Law: the speedup of a system is limit
 Directors operate under different physics—more like Gustafson's Law: as parallel processing power increases, the problem space expands to utilize it. Instead of doing the same work faster, you do categorically more work.
 
 <div class="my-6 rounded-3xl border border-foreground/10 bg-background-alt/40 p-5 text-foreground">
-  <div class="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80">Gustafson's Law Demo</div>
+  <div class="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80">
+    Gustafson's Law Demo
+  </div>
   <div class="mt-4 grid gap-4 text-sm">
     <div class="grid grid-cols-3 items-center gap-3 font-mono text-xs uppercase tracking-[0.08em]">
       <span class="text-foreground/60">Processors</span>
@@ -160,25 +174,36 @@ Directors operate under different physics—more like Gustafson's Law: as parall
     <div class="grid grid-cols-3 items-center gap-3 font-mono text-xs uppercase tracking-[0.08em]">
       <span>1</span>
       <div class="col-span-2 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-blue-400/80" style="width: 15%; min-width: 16px;"></div>
+        <div
+          class="h-full rounded-full bg-blue-400/80"
+          style="width: 15%; min-width: 16px;"
+        ></div>
       </div>
     </div>
     <div class="grid grid-cols-3 items-center gap-3 font-mono text-xs uppercase tracking-[0.08em]">
       <span>4</span>
       <div class="col-span-2 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-blue-400/80" style="width: 45%;"></div>
+        <div
+          class="h-full rounded-full bg-blue-400/80"
+          style="width: 45%;"
+        ></div>
       </div>
     </div>
     <div class="grid grid-cols-3 items-center gap-3 font-mono text-xs uppercase tracking-[0.08em]">
       <span>16</span>
       <div class="col-span-2 h-2 rounded-full bg-foreground/10">
-        <div class="h-full rounded-full bg-blue-400/80" style="width: 100%;"></div>
+        <div
+          class="h-full rounded-full bg-blue-400/80"
+          style="width: 100%;"
+        ></div>
       </div>
     </div>
     <div class="rounded-2xl bg-foreground/5 px-4 py-3 font-mono text-xs uppercase tracking-[0.12em] text-foreground/80">
       <div class="flex items-center justify-between">
         <span>Outcome</span>
-        <span class="text-base font-bold text-foreground">More scope, not just speed</span>
+        <span class="text-base font-bold text-foreground">
+          More scope, not just speed
+        </span>
       </div>
     </div>
   </div>
@@ -212,11 +237,11 @@ For the director, when execution becomes instant and infinite, output depends on
 
 <div class="my-8 flex justify-center">
   <span class="inline-flex items-center rounded-2xl border border-foreground/15 bg-background-alt/40 px-6 py-4 text-center font-mono text-base font-bold uppercase tracking-[0.08em] text-foreground">
-Director Output = Vision × Agents × Processes
+    Director Output = Vision × Agents × Processes
   </span>
 </div>
 
-When AI Agents approaches dozens and Parallel Processes approaches hundreds, Director Output dwarfs anything possible through direct making or traditional managing. 
+When AI Agents approaches dozens and Parallel Processes approaches hundreds, Director Output dwarfs anything possible through direct making or traditional managing.
 
 The math wins. The craft loses.
 
@@ -224,7 +249,7 @@ The math wins. The craft loses.
 
 What happens to human development when we skip the making phase entirely? Can you direct what you've never done? Will we settle for the status quo at the expense of the novel?
 
-The traditional path was apprentice to journeyman to master. 
+The traditional path was apprentice to journeyman to master.
 
 Each stage built intuition through repetition, wisdom through error. Directors may never touch the materials they direct. They may orchestrate symphonies without knowing how to play an instrument.
 
@@ -246,7 +271,7 @@ The maker's schedule asked: How should I spend my focused hours? The manager's s
 
 It's not a _bigger_ question. It's a different category of question.
 
-You're no longer choosing between tasks. You're choosing between futures. 
+You're no longer choosing between tasks. You're choosing between futures.
 
 Each prompt to an AI agent, each system you orchestrate, each process you spawn, they're votes for a particular version of reality.
 
@@ -254,9 +279,9 @@ The director's schedule isn't about time management. It's about outcome selectio
 
 ## The Immediate Implications
 
-Right now, someone is treating AI like a better search engine. 
+Right now, someone is treating AI like a better search engine.
 
-Someone else is orchestrating a team of agents to reimagine their industry. 
+Someone else is orchestrating a team of agents to reimagine their industry.
 
 The gap between these two approaches isn't technological, it's conceptual.
 
@@ -264,13 +289,13 @@ The tools exist. Claude can maintain context over a small book's worth of inform
 
 So what's missing? **The mental model.**
 
-We're still thinking like makers and managers in a world that rewards directors. 
+We're still thinking like makers and managers in a world that rewards directors.
 
 We're optimizing our calendars when we should be orchestrating systems. We're protecting our focus time when we should be multiplying our presence.
 
 ## The End of Graham's Binary
 
-The maker/manager schedule assumed scarcity. Scarce attention, scarce time, scarce cognitive resources. 
+The maker/manager schedule assumed scarcity. Scarce attention, scarce time, scarce cognitive resources.
 
 **The director's schedule assumes abundance.** Infinite parallel processing, instantaneous iteration, unlimited experimental capacity.
 
@@ -278,7 +303,7 @@ These aren't compatible worldviews. They're different universes.
 
 In Graham's universe, you chose your species. Maker or Manager. Then you optimized accordingly.
 
-In the director's universe, you transcend the binary entirely. 
+In the director's universe, you transcend the binary entirely.
 
 You don't choose between making and managing. You orchestrate systems that do both, simultaneously, continuously, without your direct involvement.
 

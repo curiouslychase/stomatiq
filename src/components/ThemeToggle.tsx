@@ -12,7 +12,7 @@ export default function ThemeToggle() {
     setMounted(true);
     const saved = (localStorage.getItem('theme') as Theme) || 'system';
     setCurrentTheme(saved);
-    applyTheme(saved, false);
+    applyTheme(saved);
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
@@ -28,7 +28,7 @@ export default function ThemeToggle() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   };
 
-  const applyTheme = (value: Theme, animate = false) => {
+  const applyTheme = (value: Theme) => {
     const theme = value === 'system' ? getSystem() : value;
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.classList.toggle('vibe', theme === 'vibe');
@@ -37,7 +37,7 @@ export default function ThemeToggle() {
   const handleThemeChange = (theme: Theme) => {
     setCurrentTheme(theme);
     localStorage.setItem('theme', theme);
-    applyTheme(theme, true);
+    applyTheme(theme);
   };
 
   if (!mounted) return null;

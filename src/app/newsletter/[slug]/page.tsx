@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { getPost, listPostSlugs } from '@/lib/posts';
 
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
   day: 'numeric',
