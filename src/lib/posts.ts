@@ -7,6 +7,12 @@ import LawCard from "../components/mdx/LawCard";
 import EquationCard from "../components/mdx/EquationCard";
 import IterationCard from "../components/mdx/IterationCard";
 import DomainCard from "../components/mdx/DomainCard";
+import ChangeImpactMatrix from "../components/mdx/ChangeImpactMatrix";
+import QuadrantMovement from "../components/mdx/QuadrantMovement";
+import DiagnosticFlow from "../components/mdx/DiagnosticFlow";
+import FrameworkCard from "../components/mdx/FrameworkCard";
+import ProcessSteps from "../components/mdx/ProcessSteps";
+import DecisionScaleComparison from "../components/mdx/DecisionScaleComparison";
 
 export type PostMeta = {
   slug: string;
@@ -108,6 +114,12 @@ export async function getPost(slug: string): Promise<Post | null> {
         EquationCard,
         IterationCard,
         DomainCard,
+        ChangeImpactMatrix,
+        QuadrantMovement,
+        DiagnosticFlow,
+        FrameworkCard,
+        ProcessSteps,
+        DecisionScaleComparison,
       }),
     });
 

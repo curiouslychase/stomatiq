@@ -17,7 +17,7 @@ export default function ThemeToggle() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
       const current = (localStorage.getItem('theme') as Theme) || 'system';
-      if (current === 'system') applyTheme('system', true);
+      if (current === 'system') applyTheme('system');
     };
 
     mediaQuery.addEventListener('change', handleChange);
