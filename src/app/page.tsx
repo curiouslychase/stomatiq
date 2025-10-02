@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPostsMeta } from "@/lib/posts";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export default function Home() {
   const posts = getAllPostsMeta();
@@ -146,6 +147,15 @@ export default function Home() {
               </div>
             </div>
           </aside>
+        </div>
+
+        {/* Newsletter Section */}
+        <div className="mt-16 max-w-2xl mx-auto">
+          <NewsletterSubscribe
+            heading="Subscribe to the newsletter"
+            description="Get new essays and updates delivered occasionally."
+            layout="stacked"
+          />
         </div>
       </div>
     </main>

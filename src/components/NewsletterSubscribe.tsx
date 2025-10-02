@@ -11,6 +11,7 @@ interface NewsletterSubscribeProps {
   heading?: string;
   description?: string;
   className?: string;
+  formClassName?: string;
   buttonLabel?: string;
   placeholder?: string;
   action?: string;
@@ -29,6 +30,7 @@ export default function NewsletterSubscribe({
   heading: headingProp,
   description: descriptionProp,
   className = '',
+  formClassName,
   buttonLabel = 'Subscribe',
   placeholder = 'you@example.com',
   action = '/api/newsletter/subscribe',
@@ -117,7 +119,7 @@ export default function NewsletterSubscribe({
     layout === 'inline'
       ? 'grid gap-3 sm:grid-cols-[1fr_auto]'
       : 'flex flex-col gap-3',
-    isArticle ? 'mt-4' : 'mt-6',
+    formClassName !== undefined ? formClassName : (isArticle ? 'mt-4' : 'mt-6'),
   ].filter(Boolean).join(' ');
 
   const statusClasses = [
