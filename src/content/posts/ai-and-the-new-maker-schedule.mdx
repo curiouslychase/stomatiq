@@ -10,6 +10,8 @@ author: Chase Adams
 category: Future of Work
 ---
 
+import EquationCard from "../../components/mdx/EquationCard.astro";
+
 **Paul Graham's taxonomy is dead.**
 
 In 2009, Paul Graham divided knowledge workers into two categories: 
@@ -32,30 +34,20 @@ Consider the mathematics of traditional knowledge work:
 
 The algebra of individual productivity has always been simple: multiply your focused hours by your skill level and the leverage your tools provide.
 
-  <div class="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
-    <span class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">Maker Equation</span>
-    <span class="mt-4 inline-flex items-center rounded-2xl border border-foreground/15 bg-background-alt px-6 py-4 text-center font-mono text-base font-bold uppercase tracking-[0.08em] text-foreground">
-      Maker Output = (Focus Hours) × (Skill Level) × (Tool Leverage)
-    </span>
-    <div class="mt-4 flex items-center gap-2 text-[0.65rem] font-mono uppercase tracking-[0.12em] text-foreground/50">
-      <span class="inline-flex h-2 w-2 rounded-full bg-foreground/50"></span>
-      <span>Protected focus, serial execution</span>
-    </div>
-  </div>
+<EquationCard
+  label="Maker Equation"
+  equation="Maker Output = (Focus Hours) × (Skill Level) × (Tool Leverage)"
+  dotText="Protected focus, serial execution"
+/>
 
 The manager's equation runs on different physics—impact flows from the quality and quantity of decisions, amplified through the people who execute them.
 
-
-  <div class="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
-    <span class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">Manager Equation</span>
-    <span class="mt-4 inline-flex items-center rounded-2xl border border-foreground/15 bg-background-alt px-6 py-4 text-center font-mono text-base font-bold uppercase tracking-[0.08em] text-foreground">
-      Manager Output = (Decisions × Quality × Team Size)
-    </span>
-    <div class="mt-4 flex items-center gap-2 text-[0.65rem] font-mono uppercase tracking-[0.12em] text-foreground/50">
-      <span class="inline-flex h-2 w-2 rounded-full bg-foreground"></span>
-      <span>Coordination leverage, parallel through people</span>
-    </div>
-  </div>
+<EquationCard
+  label="Manager Equation"
+  equation="Manager Output = (Decisions × Quality × Team Size)"
+  dotClass="bg-foreground"
+  dotText="Coordination leverage, parallel through people"
+/>
 
 These equations assumed mutual exclusivity. Increase focus hours, decrease coordination points. The trade-off was law. It was encoded in our calendars, our job titles, our very identity. 
 

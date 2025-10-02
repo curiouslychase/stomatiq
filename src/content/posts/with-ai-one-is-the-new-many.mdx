@@ -9,6 +9,11 @@ author: Chase Adams
 category: Future of Work
 ---
 
+import LawCard from "../../components/mdx/LawCard.astro";
+import EquationCard from "../../components/mdx/EquationCard.astro";
+import IterationCard from "../../components/mdx/IterationCard.astro";
+import DomainCard from "../../components/mdx/DomainCard.astro";
+
 There's an old African proverb: "If you want to go fast, go alone. If you want to go far, go together."
 
 For the first time in human history, this is no longer true.
@@ -23,46 +28,25 @@ We're living through the end of an assumption so basic we never thought to quest
 
 Let's consider some of the major themes of the physics of business in the past 60 years.
 
-<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  <div class="group relative overflow-hidden rounded-3xl border border-foreground/12 bg-background-alt/60 p-6 shadow-sm">
-    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-foreground/30 via-foreground to-foreground/30 opacity-80"></div>
-    <div class="flex items-center justify-between text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
-      <span>Law 01</span>
-      <span>1967</span>
-    </div>
-    <div class="mt-5 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">
-      Conway's Law
-    </div>
-    <p class="mt-4 text-sm leading-6 text-foreground/80">
-      Organizations design systems that mirror their communication structures.
-    </p>
-  </div>
-  <div class="group relative overflow-hidden rounded-3xl border border-foreground/12 bg-background-alt/60 p-6 shadow-sm">
-    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-foreground/30 via-foreground to-foreground/30 opacity-80"></div>
-    <div class="flex items-center justify-between text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
-      <span>Law 02</span>
-      <span>1975</span>
-    </div>
-    <div class="mt-5 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">
-      Brook's Law
-    </div>
-    <p class="mt-4 text-sm leading-6 text-foreground/80">
-      Adding manpower to a late project makes it later.
-    </p>
-  </div>
-  <div class="group relative overflow-hidden rounded-3xl border border-foreground/12 bg-background-alt/60 p-6 shadow-sm">
-    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-foreground/30 via-foreground to-foreground/30 opacity-80"></div>
-    <div class="flex items-center justify-between text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
-      <span>Law 03</span>
-      <span>1992</span>
-    </div>
-    <div class="mt-5 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">
-      Dunbar's Number
-    </div>
-    <p class="mt-4 text-sm leading-6 text-foreground/80">
-      Humans can maintain roughly 150 stable relationships.
-    </p>
-  </div>
+<div class="my-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <LawCard
+    index="01"
+    year="1967"
+    title="Conway's Law"
+    description="Organizations design systems that mirror their communication structures."
+  />
+  <LawCard
+    index="02"
+    year="1975"
+    title="Brook's Law"
+    description="Adding manpower to a late project makes it later."
+  />
+  <LawCard
+    index="03"
+    year="1992"
+    title="Dunbar's Number"
+    description="Humans can maintain roughly 150 stable relationships."
+  />
 </div>
 
 These weren't just observations. They were constraints that shaped everything we built.
@@ -95,35 +79,22 @@ The traditional work equation was simple. Its successor assumes coordination is 
 
 {" "}
 
-<div class="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
-  <span class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
-    Legacy Equation
-  </span>
-  <span class="mt-4 inline-flex items-center rounded-2xl border border-foreground/15 bg-background-alt px-6 py-4 text-center font-mono text-base font-bold uppercase tracking-[0.08em] text-foreground">
-    Output&nbsp;=&nbsp;People&nbsp;×&nbsp;Coordination&nbsp;×&nbsp;Time
-  </span>
-  <div class="mt-4 flex items-center gap-2 text-[0.65rem] font-mono uppercase tracking-[0.12em] text-foreground/50">
-    <span class="inline-flex h-2 w-2 rounded-full bg-foreground/50"></span>
-    <span>Sequential era physics</span>
-  </div>
-</div>
+<EquationCard
+  label="Legacy Equation"
+  equation="Output = People × Coordination × Time"
+  dotText="Sequential era physics"
+/>
 
 Every AI model is a collapsed team. Designer, developer, analyst, writer. Every role compressed into a single interface.
 
 Every prompt is a meeting that doesn't happen. Every iteration is a decision without consensus.
 
-<div class="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
-  <span class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
-    Collapsed Team Equation
-  </span>
-  <span class="mt-4 inline-flex items-center rounded-2xl border border-foreground/15 bg-background-alt px-6 py-4 text-center font-mono text-base font-bold uppercase tracking-[0.08em] text-foreground">
-    Output&nbsp;=&nbsp;Imagination&nbsp;×&nbsp;AI&nbsp;×&nbsp;Iteration&nbsp;Speed
-  </span>
-  <div class="mt-4 flex items-center gap-2 text-[0.65rem] font-mono uppercase tracking-[0.12em] text-foreground/50">
-    <span class="inline-flex h-2 w-2 rounded-full bg-foreground"></span>
-    <span>Parallel era physics</span>
-  </div>
-</div>
+<EquationCard
+  label="Collapsed Team Equation"
+  equation="Output = Imagination × AI × Iteration Speed"
+  dotClass="bg-foreground"
+  dotText="Parallel era physics"
+/>
 
 A solo builder iterates 50 times per day. A team iterates twice per week.
 
@@ -163,42 +134,24 @@ The strange realization: You're never alone (AI everywhere) yet always alone (no
     <span>Solo vs Team Velocity</span>
   </div>
   <div class="grid gap-6 px-6 py-6 md:grid-cols-2">
-    <div class="flex flex-col rounded-2xl border border-foreground/8 bg-background-alt/70 p-5">
-      <span class="text-[0.7rem] font-mono uppercase tracking-[0.14em] text-emerald-500/80">
-        Solo Builder + AI
-      </span>
-      <div class="mt-4 flex items-baseline justify-between font-mono text-sm uppercase tracking-[0.08em] text-foreground">
-        <span>Daily Iterations</span>
-        <span class="text-lg font-bold">50</span>
-      </div>
-      <div class="mt-3 h-2 rounded-full bg-foreground/10">
-        <div
-          class="h-full rounded-full bg-emerald-400/80"
-          style="width: 100%;"
-        ></div>
-      </div>
-      <p class="mt-4 text-xs leading-5 text-foreground/60">
-        Rapid prompts, instant feedback, no coordination drag.
-      </p>
-    </div>
-    <div class="flex flex-col rounded-2xl border border-foreground/8 bg-background-alt/70 p-5">
-      <span class="text-[0.7rem] font-mono uppercase tracking-[0.14em] text-foreground/50">
-        Traditional Team Sprint
-      </span>
-      <div class="mt-4 flex items-baseline justify-between font-mono text-sm uppercase tracking-[0.08em] text-foreground/80">
-        <span>Weekly Iterations</span>
-        <span class="text-lg font-bold">2</span>
-      </div>
-      <div class="mt-3 h-2 rounded-full bg-foreground/10">
-        <div
-          class="h-full rounded-full bg-foreground/30"
-          style="width: 8%; min-width: 12px;"
-        ></div>
-      </div>
-      <p class="mt-4 text-xs leading-5 text-foreground/60">
-        Meetings, handoffs, and consensus slow the loop.
-      </p>
-    </div>
+    <IterationCard
+      label="Solo Builder + AI"
+      title="Daily Iterations"
+      value="50"
+      barWidth="100%"
+      barClass="bg-emerald-400/80"
+      description="Rapid prompts, instant feedback, no coordination drag."
+      badgeClass="text-emerald-500/80"
+    />
+    <IterationCard
+      label="Traditional Team Sprint"
+      title="Weekly Iterations"
+      value="2"
+      barWidth="8%"
+      barClass="bg-foreground/30"
+      description="Meetings, handoffs, and consensus slow the loop."
+      badgeClass="text-foreground/50"
+    />
   </div>
 </div>
 
@@ -272,46 +225,51 @@ This possible third way is distributed creation without coordination overhead.
 
 What does this look like in practice?
 
+Instead of one person owning and orchestrating everything, they own and orchestrate major components of the business.
+
 <div class="my-10 overflow-hidden rounded-3xl border border-foreground/12 bg-background-alt/50">
-  <div class="border-b border-foreground/10 px-6 py-5">
+  <div class="border-b border-foreground/10 px-8 py-8">
     <div class="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">Sovereign Domains Model</div>
-    <p class="mt-3 text-sm leading-6 text-foreground/80">Federated ownership with AI acceleration. Each owner ships independently, composes cohesively.</p>
+    <p class="mt-4 max-w-2xl text-sm leading-7 text-foreground/80">Federated ownership with AI acceleration. Each owner ships independently, composes cohesively.</p>
   </div>
-  <div class="grid gap-6 px-6 py-8 md:grid-cols-3">
-    <div class="flex flex-col rounded-2xl border border-foreground/10 bg-background-alt/70 p-5">
-      <span class="text-xs font-mono uppercase tracking-[0.14em] text-foreground/60">Domain 01</span>
-      <span class="mt-3 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">API Owner</span>
-      <ul class="mt-4 space-y-2 text-sm text-foreground/75">
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Defines and maintains service contracts</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Runs autonomous test and deploy cycles</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Publishes change logs as the interface</span></li>
-      </ul>
+  <div class="relative px-6 py-10">
+    <div class="absolute left-9 top-10 bottom-10 hidden md:block">
+      <span class="block h-full w-px bg-foreground/12"></span>
     </div>
-    <div class="flex flex-col rounded-2xl border border-foreground/10 bg-background-alt/70 p-5">
-      <span class="text-xs font-mono uppercase tracking-[0.14em] text-foreground/60">Domain 02</span>
-      <span class="mt-3 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">Interface Owner</span>
-      <ul class="mt-4 space-y-2 text-sm text-foreground/75">
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Shapes end-to-end user journeys</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Generates variants and ships live experiments</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Consumes APIs without handoffs</span></li>
-      </ul>
-    </div>
-    <div class="flex flex-col rounded-2xl border border-foreground/10 bg-background-alt/70 p-5">
-      <span class="text-xs font-mono uppercase tracking-[0.14em] text-foreground/60">Domain 03</span>
-      <span class="mt-3 text-lg font-semibold uppercase tracking-[0.08em] text-foreground">Operations Owner</span>
-      <ul class="mt-4 space-y-2 text-sm text-foreground/75">
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Automates onboarding and support flows</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Monitors feedback loops in real time</span></li>
-        <li class="flex items-baseline gap-2"><span class="inline-flex h-1.5 w-1.5 rounded-full bg-foreground/60"></span><span>Closes loops with policy-driven playbooks</span></li>
-      </ul>
+    <div class="flex flex-col gap-10">
+      <DomainCard
+        index="01"
+        title="API Owner"
+        items={[
+          "Defines and maintains service contracts",
+          "Runs autonomous test and deploy cycles",
+          "Publishes change logs as the interface",
+        ]}
+      />
+      <DomainCard
+        index="02"
+        title="Interface Owner"
+        items={[
+          "Shapes end-to-end user journeys",
+          "Generates variants and ships live experiments",
+          "Consumes APIs without handoffs",
+        ]}
+      />
+      <DomainCard
+        index="03"
+        title="Operations Owner"
+        items={[
+          "Automates onboarding and support flows",
+          "Monitors feedback loops in real time",
+          "Closes loops with policy-driven playbooks",
+        ]}
+      />
     </div>
   </div>
-  <div class="border-t border-foreground/10 px-6 py-4 text-center font-mono text-xs uppercase tracking-[0.12em] text-foreground/60">
+  <div class="border-t border-foreground/10 px-8 py-6 text-center font-mono text-xs uppercase tracking-[0.12em] text-foreground/60">
     Composed via clear contracts, zero overlap
   </div>
 </div>
-
-Instead of one person owning and orchestrating everything, they own and orchestrate major components of the business.
 
 One person owns the API. One person owns the interface. One person owns customer operations. One person owns brand design. Not components or functions, complete domains with clear edges. Each person works alone with AI, at maximum velocity, but their outputs compose into something larger.
 

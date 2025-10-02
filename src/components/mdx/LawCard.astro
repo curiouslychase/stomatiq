@@ -1,0 +1,29 @@
+---
+interface Props {
+  index: string;
+  year: string;
+  title: string;
+  description: string;
+}
+
+const { index, year, title, description } = Astro.props;
+---
+
+<div
+  class="group relative overflow-hidden rounded-2xl border border-foreground/12 bg-background-alt/60 px-4 pt-2 pb-4 shadow-sm"
+>
+  <div
+    class="flex items-center justify-between text-[0.65rem] font-mono uppercase text-foreground/60"
+  >
+    <span>Law {index}</span>
+    <span>{year}</span>
+  </div>
+  <div
+    class="mt-5 text-lg font-semibold font-mono uppercase tracking-[0.08em] text-foreground"
+  >
+    {title}
+  </div>
+  <p class="mt-4 text-sm leading-6 text-foreground/80 !font-sans">
+    {description}
+  </p>
+</div>
