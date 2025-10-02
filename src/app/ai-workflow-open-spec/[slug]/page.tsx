@@ -24,9 +24,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const pageTitle = `AI Workflow Open Spec – ${section.title}`;
+  const ogImage = `/api/og/${slug}.png`;
+
   return {
-    title: `AI Workflow Open Spec – ${section.title} | stomatiq`,
+    title: `${pageTitle} | stomatiq`,
     description: heroDescription,
+    openGraph: {
+      title: pageTitle,
+      description: heroDescription,
+      images: [ogImage],
+      type: 'article',
+    },
   };
 }
 

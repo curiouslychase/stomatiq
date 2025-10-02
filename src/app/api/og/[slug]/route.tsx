@@ -278,54 +278,39 @@ export async function GET(request: Request, context: ParamsContext) {
               display: "flex",
               flexDirection: "column",
               gap: 32,
-              maxWidth: "95%",
+              alignItems: "flex-start",
             }}
           >
-            <div
+            <h1
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0.72)",
                 padding: "28px 32px",
-                borderRadius: "20px",
                 display: "flex",
-                flexDirection: "column",
-                maxWidth: "96%",
+                fontSize: 64,
+                lineHeight: 1.08,
+                fontWeight: 400,
+                margin: 0,
+                fontFamily: '"Space Mono", "Geist Mono", monospace',
+                letterSpacing: 4,
               }}
             >
-              <h1
-                style={{
-                  fontSize: 48,
-                  lineHeight: 1.08,
-                  fontWeight: 400,
-                  margin: 0,
-                  fontFamily: '"Space Mono", "Geist Mono", monospace',
-                  letterSpacing: 4,
-                }}
-              >
-                {title}
-              </h1>
-            </div>
-            <div
+              {title}
+            </h1>
+            <p
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0.68)",
                 padding: "24px 32px",
-                borderRadius: "20px",
                 display: "flex",
-                flexDirection: "column",
                 maxWidth: "70%",
+                fontSize: 24,
+                lineHeight: 1.4,
+                margin: 0,
+                color: "rgba(226, 232, 240, 0.92)",
+                fontFamily: '"Space Mono", "Geist Mono", monospace',
               }}
             >
-              <p
-                style={{
-                  fontSize: 24,
-                  lineHeight: 1.4,
-                  margin: 0,
-                  color: "rgba(226, 232, 240, 0.92)",
-                  fontFamily: '"Space Mono", "Geist Mono", monospace',
-                }}
-              >
-                {description}
-              </p>
-            </div>
+              {description}
+            </p>
           </div>
           <div
             style={{

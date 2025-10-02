@@ -5,8 +5,17 @@ export const dynamic = 'force-static';
 
 const INTRO_SLUG = 'introduction';
 
+const heroDescription = "A common language for weaving together modular programmatic steps with agentic intelligence.";
+
 export const metadata = {
   title: 'AI Workflow Open Spec | stomatiq',
+  description: heroDescription,
+  openGraph: {
+    title: 'AI Workflow Open Spec',
+    description: heroDescription,
+    images: ['/api/og/introduction.png'],
+    type: 'article',
+  },
 };
 
 export default function AIWorkflowOpenSpecPage() {
