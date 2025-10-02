@@ -1,18 +1,36 @@
 ---
 id: content-XXX
-title: "Content Title"
+title: Content Title
 type: content
 status: idea
 priority: medium
 assignee: null
 tags: []
-content_type: "" # future-laws | thriving-playbook | human-side
+content_type:  # future-laws | thriving-playbook | human-side
 category: "" # new-laws-of-work | how-to-thrive | human-side | field-reports | society-institutions
 created: YYYY-MM-DD
 started: null
 finished: null
 related: []
 ---
+
+## Published Content Frontmatter Template
+
+When ready to publish, the content file (MDX) should have this frontmatter:
+
+```yaml
+---
+title: # Short, compelling title (e.g., "The New Maker Schedule Isn't About Making")
+date: # YYYY-MM-DD format (e.g., 2025-10-08)
+excerpt: # very short sentence summarizing the content for preview cards (e.g., "AI agents are turning makers into directors"), don't use a period to end the sentence
+description: # Brief description for meta/SEO (often same as excerpt or shorter version)
+tags: # Array of relevant tags (e.g., [ai, productivity, parallelization, agents, "director mindset"])
+cover: # Path to cover image (e.g., /images/director-schedule.png)
+thumbnail: # Path to thumbnail (e.g., /images/director-schedule-thumbnail.png) - optional
+author: # Author name (e.g., Chase Adams)
+category: # Primary category (e.g., Future of Work)
+---
+```
 
 ## Purpose
 
