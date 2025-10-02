@@ -34,10 +34,11 @@ async function loadFont(relativePath: string): Promise<ArrayBuffer | null> {
   try {
     const resolved = require.resolve(relativePath);
     const data = await fs.readFile(resolved);
-    return data.buffer.slice(
+    const buffer = data.buffer.slice(
       data.byteOffset,
       data.byteOffset + data.byteLength
     );
+    return buffer instanceof ArrayBuffer ? buffer : null;
   } catch {
     return null;
   }
@@ -266,9 +267,8 @@ export async function GET(request: Request, context: ParamsContext) {
             position: "relative",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             padding: "72px",
-            marginTop: "210px",
             width: "100%",
             boxSizing: "border-box",
           }}
@@ -293,7 +293,7 @@ export async function GET(request: Request, context: ParamsContext) {
             >
               <h1
                 style={{
-                  fontSize: 64,
+                  fontSize: 48,
                   lineHeight: 1.08,
                   fontWeight: 400,
                   margin: 0,
@@ -329,27 +329,21 @@ export async function GET(request: Request, context: ParamsContext) {
           </div>
           <div
             style={{
+              position: "absolute",
+              bottom: 48,
+              right: 48,
               display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 70,
+              height: 70,
+              borderRadius: "50%",
+              backgroundColor: "rgba(0, 0, 0, 0.65)",
+              color: "#f8fafc",
+              padding: 12,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 70,
-                height: 70,
-                borderRadius: "50%",
-                backgroundColor: "rgba(0, 0, 0, 0.65)",
-                color: "#f8fafc",
-                marginRight: -20,
-                padding: 12,
-              }}
-            >
-              <Logo />
-            </div>
+            <Logo />
           </div>
         </div>
       </div>
