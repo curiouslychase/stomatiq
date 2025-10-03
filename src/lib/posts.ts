@@ -27,6 +27,7 @@ export type PostMeta = {
   authorAvatar?: string;
   authorBio?: string;
   category?: string;
+  categorySlug?: string;
 };
 
 export type Post = PostMeta & {
@@ -36,6 +37,13 @@ export type Post = PostMeta & {
 
 // Posts are in the parent src/content/posts directory
 const postsDirectory = path.join(process.cwd(), "content", "posts");
+
+export function categoryToSlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function toPostMeta(slug: string, data: Record<string, unknown>): PostMeta {
   const title = String(data.title ?? slug);
@@ -55,6 +63,7 @@ function toPostMeta(slug: string, data: Record<string, unknown>): PostMeta {
     : undefined;
   const authorBio = data.authorBio ? String(data.authorBio) : undefined;
   const category = data.category ? String(data.category) : undefined;
+  const categorySlug = category ? categoryToSlug(category) : undefined;
   return {
     slug,
     title,
@@ -68,6 +77,7 @@ function toPostMeta(slug: string, data: Record<string, unknown>): PostMeta {
     authorAvatar,
     authorBio,
     category,
+    categorySlug,
   } satisfies PostMeta;
 }
 

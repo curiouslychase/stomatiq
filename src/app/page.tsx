@@ -15,7 +15,7 @@ export default function Home() {
           {/* Featured Post */}
           <section className="lg:col-span-7">
             {featured && (
-              <Link href={`/posts/${featured.slug}`} className="block group">
+              <Link href={featured.categorySlug ? `/${featured.categorySlug}/${featured.slug}` : `/posts/${featured.slug}`} className="block group">
                 <article className="space-y-6">
                   {featured.cover && (
                     <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
@@ -72,7 +72,7 @@ export default function Home() {
                 {recentEssays.map((post) => (
                   <Link
                     key={post.slug}
-                    href={`/posts/${post.slug}`}
+                    href={post.categorySlug ? `/${post.categorySlug}/${post.slug}` : `/posts/${post.slug}`}
                     className="block group"
                   >
                     <article className="flex gap-4 items-start">

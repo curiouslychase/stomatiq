@@ -37,7 +37,7 @@ export default function NewsletterPage() {
             {posts.map((post) => (
               <li key={post.slug}>
                 <Link
-                  href={`/newsletter/${post.slug}/`}
+                  href={post.categorySlug ? `/${post.categorySlug}/${post.slug}/` : `/newsletter/${post.slug}/`}
                   className="group grid gap-6 py-10 no-underline transition sm:grid-cols-[140px_1fr]"
                 >
                   <div className="relative">

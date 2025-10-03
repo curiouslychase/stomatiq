@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getPost, listPostSlugs } from '@/lib/posts';
+import { getPost, getAllPostsMeta, categoryToSlug } from '@/lib/posts';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -17,13 +17,16 @@ const formatDate = (value: string) => {
 };
 
 export async function generateStaticParams() {
-  const slugs = listPostSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  const posts = getAllPostsMeta();
+  return posts
+    .filter((post) => post.categorySlug)
+    .map((post) => ({
+      category: post.categorySlug,
+      slug: post.slug,
+    }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { slug } = await params;
   const post = await getPost(slug);
 
@@ -49,11 +52,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function NewsletterPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function CategoryPostPage({ params }: { params: Promise<{ category: string; slug: string }> }) {
+  const { category, slug } = await params;
   const post = await getPost(slug);
 
-  if (!post) {
+  if (!post || (post.categorySlug && post.categorySlug !== category)) {
     notFound();
   }
 
