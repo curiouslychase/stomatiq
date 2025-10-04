@@ -2,7 +2,7 @@
 id: content-002
 title: "The Director's Schedule: How to Orchestrate Parallel Agents"
 type: content
-status: planned
+status: up-next
 priority: medium
 assignee: null
 tags: [content, thriving-playbook, orchestration, agents]

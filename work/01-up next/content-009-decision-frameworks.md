@@ -2,7 +2,7 @@
 id: content-009
 title: "Create Decision Frameworks, Not Decisions"
 type: content
-status: planned
+status: up-next
 priority: high
 assignee: null
 tags: [content, frameworks, decision-making, scaling]

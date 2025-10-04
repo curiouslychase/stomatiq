@@ -2,7 +2,7 @@
 id: content-001
 title: "The Change-Impact Matrix: A 2×2 Framework for Navigating AI Disruption"
 type: content
-status: draft
+status: up-next
 priority: medium
 assignee: null
 tags: [framework, decision-making, strategic-thinking, future-laws]

@@ -13,6 +13,11 @@ import DiagnosticFlow from "../components/mdx/DiagnosticFlow";
 import FrameworkCard from "../components/mdx/FrameworkCard";
 import ProcessSteps from "../components/mdx/ProcessSteps";
 import DecisionScaleComparison from "../components/mdx/DecisionScaleComparison";
+import TradeoffMatrix from "../components/mdx/TradeoffMatrix";
+import FederatedArchitecture from "../components/mdx/FederatedArchitecture";
+import TeamSizeEvolution from "../components/mdx/TeamSizeEvolution";
+import InstitutionalLag from "../components/mdx/InstitutionalLag";
+import BottleneckShift from "../components/mdx/BottleneckShift";
 
 export type PostMeta = {
   slug: string;
@@ -130,6 +135,11 @@ export async function getPost(slug: string): Promise<Post | null> {
         FrameworkCard,
         ProcessSteps,
         DecisionScaleComparison,
+        TradeoffMatrix,
+        FederatedArchitecture,
+        TeamSizeEvolution,
+        InstitutionalLag,
+        BottleneckShift,
       }),
     });
 

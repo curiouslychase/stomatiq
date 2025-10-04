@@ -2,7 +2,7 @@
 id: content-003
 title: "Building Your AI Orchestra: A Playbook for Multi-Agent Workflows"
 type: content
-status: planned
+status: up-next
 priority: medium
 assignee: null
 tags: [content, thriving-playbook, multi-agent, workflows]

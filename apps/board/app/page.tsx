@@ -5,7 +5,7 @@ export default function Home() {
   const workItems = getAllWorkItems();
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="bg-gray-100 h-screen overflow-hidden">
       <BoardView workItems={workItems} />
     </div>
   );

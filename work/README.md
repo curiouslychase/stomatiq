@@ -50,7 +50,7 @@ idea → planned → in-progress → review → done
 ```
 
 - `idea` - Initial concept
-- `planned` - Approved and prioritized
+- `up-next` - Queued work
 - `in-progress` - Active work
 - `blocked` - Can't proceed (note blockers in related items)
 - `review` - Awaiting feedback

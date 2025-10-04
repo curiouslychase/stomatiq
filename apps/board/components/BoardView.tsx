@@ -60,9 +60,11 @@ export function BoardView({ workItems }: BoardViewProps) {
     return items;
   }, [workItems, selectedTags, selectedTypes]);
 
-  const activeItems = filteredItems.filter(item => item.folder === 'active');
-  const doneItems = filteredItems.filter(item => item.folder === 'done');
-  const cancelledItems = filteredItems.filter(item => item.folder === 'cancelled');
+  const backlogItems = filteredItems.filter(item => item.folder === '00-backlog');
+  const upNextItems = filteredItems.filter(item => item.folder === '01-up next');
+  const activeItems = filteredItems.filter(item => item.folder === '02-active');
+  const cancelledItems = filteredItems.filter(item => item.folder === '03-cancelled');
+  const doneItems = filteredItems.filter(item => item.folder === '04-done');
 
   const toggleTag = (tag: string) => {
     setSelectedTags(prev => {
@@ -96,9 +98,9 @@ export function BoardView({ workItems }: BoardViewProps) {
   const hasActiveFilters = selectedTags.size > 0 || selectedTypes.size > 0;
 
   return (
-    <>
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="flex flex-col h-screen">
+      <header className="bg-white shadow-sm flex-shrink-0">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <h1 className="text-2xl font-bold text-gray-900">Work Board</h1>
           <p className="text-sm text-gray-500 mt-1">
             {hasActiveFilters
@@ -109,18 +111,32 @@ export function BoardView({ workItems }: BoardViewProps) {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Filters
-          tags={availableTags}
-          types={availableTypes}
-          selectedTags={selectedTags}
-          selectedTypes={selectedTypes}
-          onToggleTag={toggleTag}
-          onToggleType={toggleType}
-          onClearAll={clearAllFilters}
-        />
+      <main className="mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 flex flex-col overflow-hidden w-full">
+        <div className="flex-shrink-0 mb-6">
+          <Filters
+            tags={availableTags}
+            types={availableTypes}
+            selectedTags={selectedTags}
+            selectedTypes={selectedTypes}
+            onToggleTag={toggleTag}
+            onToggleType={toggleType}
+            onClearAll={clearAllFilters}
+          />
+        </div>
 
-        <div className="flex gap-6 overflow-x-auto pb-4">
+        <div className="flex gap-6 overflow-x-auto flex-1">
+          <BoardColumn
+            title="Backlog"
+            items={backlogItems}
+            color="bg-gray-100"
+            onCardClick={setSelectedItem}
+          />
+          <BoardColumn
+            title="Up Next"
+            items={upNextItems}
+            color="bg-purple-100"
+            onCardClick={setSelectedItem}
+          />
           <BoardColumn
             title="Active"
             items={activeItems}
@@ -136,7 +152,7 @@ export function BoardView({ workItems }: BoardViewProps) {
           <BoardColumn
             title="Cancelled"
             items={cancelledItems}
-            color="bg-gray-200"
+            color="bg-orange-100"
             onCardClick={setSelectedItem}
           />
         </div>
@@ -146,6 +162,6 @@ export function BoardView({ workItems }: BoardViewProps) {
         item={selectedItem}
         onClose={() => setSelectedItem(null)}
       />
-    </>
+    </div>
   );
 }
