@@ -25,7 +25,10 @@ const MIME_BY_EXTENSION: Record<string, string> = {
 async function loadFont(fontPath: string): Promise<ArrayBuffer> {
   const fullPath = path.join(process.cwd(), "public", fontPath);
   const data = await fs.readFile(fullPath);
-  return data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
+  return data.buffer.slice(
+    data.byteOffset,
+    data.byteOffset + data.byteLength
+  ) as ArrayBuffer;
 }
 
 async function getRegularFont(): Promise<ArrayBuffer> {

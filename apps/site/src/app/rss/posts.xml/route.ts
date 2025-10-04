@@ -14,10 +14,7 @@ export async function GET() {
   });
 
   posts.forEach((post) => {
-    // Use category-based URL if available, fallback to newsletter
-    const postUrl = post.categorySlug
-      ? `https://stomatiq.com/${post.categorySlug}/${post.slug}/`
-      : `https://stomatiq.com/newsletter/${post.slug}/`;
+    const postUrl = `https://stomatiq.com/${post.categorySlug ?? 'posts'}/${post.slug}/`;
 
     feed.item({
       title: post.title,
