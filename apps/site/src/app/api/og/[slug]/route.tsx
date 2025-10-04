@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import { NextResponse } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { createRequire } from "node:module";
 import { getPostMeta } from "@/lib/posts";
 import { getAllSpecSectionsMeta } from "@/lib/spec";
 
@@ -11,15 +10,8 @@ export const runtime = "nodejs";
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-const REGULAR_FONT_PATH =
-  "@fontsource/space-mono/files/space-mono-latin-400-normal.woff";
-const BOLD_FONT_PATH =
-  "@fontsource/space-mono/files/space-mono-latin-700-normal.woff";
-
 let cachedRegularFont: ArrayBuffer | null = null;
 let cachedBoldFont: ArrayBuffer | null = null;
-
-const require = createRequire(import.meta.url);
 
 const MIME_BY_EXTENSION: Record<string, string> = {
   ".png": "image/png",
@@ -30,30 +22,22 @@ const MIME_BY_EXTENSION: Record<string, string> = {
   ".svg": "image/svg+xml",
 };
 
-async function loadFont(relativePath: string): Promise<ArrayBuffer | null> {
-  try {
-    const resolved = require.resolve(relativePath);
-    const data = await fs.readFile(resolved);
-    const buffer = data.buffer.slice(
-      data.byteOffset,
-      data.byteOffset + data.byteLength
-    );
-    return buffer instanceof ArrayBuffer ? buffer : null;
-  } catch {
-    return null;
-  }
+async function loadFont(fontPath: string): Promise<ArrayBuffer> {
+  const fullPath = path.join(process.cwd(), "public", fontPath);
+  const data = await fs.readFile(fullPath);
+  return data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
 }
 
-async function getRegularFont(): Promise<ArrayBuffer | null> {
+async function getRegularFont(): Promise<ArrayBuffer> {
   if (!cachedRegularFont) {
-    cachedRegularFont = await loadFont(REGULAR_FONT_PATH);
+    cachedRegularFont = await loadFont("fonts/space-mono-400.woff");
   }
   return cachedRegularFont;
 }
 
-async function getBoldFont(): Promise<ArrayBuffer | null> {
+async function getBoldFont(): Promise<ArrayBuffer> {
   if (!cachedBoldFont) {
-    cachedBoldFont = await loadFont(BOLD_FONT_PATH);
+    cachedBoldFont = await loadFont("fonts/space-mono-700.woff");
   }
   return cachedBoldFont;
 }
@@ -340,12 +324,8 @@ export async function GET(request: Request, context: ParamsContext) {
       width: WIDTH,
       height: HEIGHT,
       fonts: [
-        ...(regularFont
-          ? [{ name: "Space Mono", data: regularFont, weight: 400 as const }]
-          : []),
-        ...(boldFont
-          ? [{ name: "Space Mono", data: boldFont, weight: 700 as const }]
-          : []),
+        { name: "Space Mono", data: regularFont, weight: 400 as const },
+        { name: "Space Mono", data: boldFont, weight: 700 as const },
       ],
     }
   );
