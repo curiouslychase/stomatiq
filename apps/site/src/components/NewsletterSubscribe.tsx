@@ -181,7 +181,7 @@ export default function NewsletterSubscribe({
           variant={isArticle ? "outline" : "default"}
           className={[
             isArticle
-              ? 'self-start border-foreground/30 bg-background text-sm font-semibold uppercase tracking-[0.18em] hover:bg-foreground/10'
+              ? 'self-center border-foreground/30 bg-background text-sm font-semibold uppercase tracking-[0.18em] hover:bg-foreground/10'
               : 'border-foreground bg-foreground text-xs font-semibold uppercase tracking-[0.25em] text-background hover:bg-foreground/90',
           ].join(' ')}
         >

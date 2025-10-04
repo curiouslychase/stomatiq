@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -57,11 +58,13 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="bg-background text-foreground min-h-screen flex flex-col">
-        <SiteHeader />
-        <div className="w-screen">
-          {children}
-        </div>
-        <SiteFooter />
+        <PostHogProvider>
+          <SiteHeader />
+          <div className="w-screen">
+            {children}
+          </div>
+          <SiteFooter />
+        </PostHogProvider>
       </body>
     </html>
   );
