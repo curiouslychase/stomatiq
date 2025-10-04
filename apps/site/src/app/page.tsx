@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPostsMeta } from "@/lib/posts";
+import { getAllPostsMeta, getFuturePostsMeta } from "@/lib/posts";
 import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export default function Home() {
   const posts = getAllPostsMeta();
   const [featured] = posts;
   const recentEssays = posts.slice(1, 6);
+  const comingSoon = getFuturePostsMeta().slice(0, 4);
 
   return (
     <main className="min-h-screen">
@@ -15,7 +16,14 @@ export default function Home() {
           {/* Featured Post */}
           <section className="lg:col-span-7 px-4 lg:px-0">
             {featured && (
-              <Link href={featured.categorySlug ? `/${featured.categorySlug}/${featured.slug}` : `/posts/${featured.slug}`} className="block group">
+              <Link
+                href={
+                  featured.categorySlug
+                    ? `/${featured.categorySlug}/${featured.slug}`
+                    : `/posts/${featured.slug}`
+                }
+                className="block group"
+              >
                 <article className="space-y-6">
                   {featured.cover && (
                     <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
@@ -72,14 +80,18 @@ export default function Home() {
                 {recentEssays.map((post) => (
                   <Link
                     key={post.slug}
-                    href={post.categorySlug ? `/${post.categorySlug}/${post.slug}` : `/posts/${post.slug}`}
+                    href={
+                      post.categorySlug
+                        ? `/${post.categorySlug}/${post.slug}`
+                        : `/posts/${post.slug}`
+                    }
                     className="block group"
                   >
                     <article className="grid grid-cols-1 sm:flex gap-4 items-start">
-                      {(post.cover || post.thumbnail) && (
+                      {post.cover && (
                         <div className="relative sm:w-20 sm:h-20 aspect-[16/10] sm:aspect-square sm:flex-shrink-0 overflow-hidden rounded-lg sm:rounded">
                           <Image
-                            src={post.cover || post.thumbnail}
+                            src={post.cover}
                             alt={post.title}
                             fill
                             className="object-cover transition-transform group-hover:scale-105"
@@ -103,6 +115,32 @@ export default function Home() {
                   </Link>
                 ))}
               </div>
+
+              {/* Coming Soon */}
+              {comingSoon.length > 0 && (
+                <div className="mt-12 space-y-6">
+                  <h2 className="text-sm font-medium uppercase tracking-wider px-4 lg:px-0">
+                    Coming Soon
+                  </h2>
+                  <div className="space-y-8 px-4 lg:px-0">
+                    {comingSoon.map((post) => (
+                      <article key={post.slug} className="space-y-1">
+                        <h3
+                          className="text-sm font-medium leading-tight uppercase text-foreground/70"
+                          style={{ fontFamily: "var(--font-mono)" }}
+                        >
+                          {post.title}
+                        </h3>
+                        {(post.excerpt || post.description) && (
+                          <p className="text-xs leading-relaxed text-foreground/60">
+                            {post.excerpt || post.description}
+                          </p>
+                        )}
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </aside>
         </div>

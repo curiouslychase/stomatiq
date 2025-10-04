@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,12 +55,13 @@ export default function SiteHeader() {
                 <Link href="/newsletter" className="hover:underline">
                   Newsletter
                 </Link>
-                <button
+                <Button
                   onClick={() => setSubscribeOpen(true)}
-                  className="hover:underline"
+                  className="uppercase font-bold cursor-pointer"
+                  size="lg"
                 >
                   Subscribe
-                </button>
+                </Button>
               </nav>
 
               {/* Mobile menu button */}
@@ -148,22 +150,16 @@ export default function SiteHeader() {
               >
                 Newsletter
               </Link>
-              <button
+              <Button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setSubscribeOpen(true);
                 }}
-                className="hover:underline text-left"
+                size="lg"
+                className="uppercase font-bold w-fit cursor-pointer"
               >
                 Subscribe
-              </button>
-              <Link
-                href="/rss.xml"
-                className="hover:underline"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                RSS
-              </Link>
+              </Button>
             </nav>
           </div>
         </div>
@@ -173,7 +169,9 @@ export default function SiteHeader() {
       <Dialog open={subscribeOpen} onOpenChange={setSubscribeOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle className="sr-only">Subscribe to newsletter</DialogTitle>
+            <DialogTitle className="sr-only">
+              Subscribe to newsletter
+            </DialogTitle>
           </DialogHeader>
           <NewsletterSubscribe
             variant="article"

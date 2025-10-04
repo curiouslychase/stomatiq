@@ -172,3 +172,15 @@ export function getAllPostsMeta(): PostMeta[] {
     .filter(shouldDisplayPost)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
+
+export function getFuturePostsMeta(): PostMeta[] {
+  const now = new Date();
+  return listPostSlugs()
+    .map((slug) => getPostMeta(slug))
+    .filter((m): m is PostMeta => Boolean(m))
+    .filter((post) => {
+      const postDate = new Date(post.date);
+      return postDate > now;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}
