@@ -16,13 +16,13 @@ tmp
 /coverage
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 .astro
 .env.local
 
 # production
-/build
+build
 
 # misc
 .DS_Store

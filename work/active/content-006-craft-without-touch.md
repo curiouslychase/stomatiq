@@ -1,7 +1,7 @@
 ---
 id: content-006
 title: "Craft Without Touch: How to Find Meaning When You Don't Make"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

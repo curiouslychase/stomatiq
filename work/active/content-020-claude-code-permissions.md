@@ -1,7 +1,7 @@
 ---
 id: content-020
 title: "Sensible Defaults for Claude Code Permissions"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

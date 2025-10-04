@@ -1,7 +1,7 @@
 ---
 id: content-014
 title: "The Workflow Debugger: Fixing Broken AI Chains Without Losing Your Mind"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

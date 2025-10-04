@@ -1,7 +1,7 @@
 ---
 id: content-011
 title: "The Automation Curve: From Tasks to Workflows to Systems"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

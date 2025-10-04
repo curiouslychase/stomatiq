@@ -1,7 +1,7 @@
 ---
 id: content-002
 title: "The Director's Schedule: How to Orchestrate Parallel Agents"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

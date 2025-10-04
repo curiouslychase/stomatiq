@@ -1,7 +1,7 @@
 ---
 id: content-018
 title: "Prompt Clarity Is the New Communication Skill"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

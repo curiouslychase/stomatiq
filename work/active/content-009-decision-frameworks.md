@@ -1,7 +1,7 @@
 ---
 id: content-009
 title: "Create Decision Frameworks, Not Decisions"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

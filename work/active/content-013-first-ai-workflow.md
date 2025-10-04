@@ -1,7 +1,7 @@
 ---
 id: content-013
 title: "How to Build Your First AI Workflow (Without Code)"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

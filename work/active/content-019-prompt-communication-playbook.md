@@ -1,7 +1,7 @@
 ---
 id: content-019
 title: "The Prompt Communication Playbook: How to Direct Systems with Clarity"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

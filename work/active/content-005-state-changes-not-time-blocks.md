@@ -1,7 +1,7 @@
 ---
 id: content-005
 title: "State Changes, Not Time Blocks: Designing Your New Workday"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

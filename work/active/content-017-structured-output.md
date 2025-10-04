@@ -1,7 +1,7 @@
 ---
 id: content-017
 title: "Structured Output: What It Is, Why It Matters, and When to Use It"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

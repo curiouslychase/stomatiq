@@ -1,7 +1,7 @@
 ---
 id: content-016
 title: "Case Study: A Week in the Life with 10 AI Workflows Running"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

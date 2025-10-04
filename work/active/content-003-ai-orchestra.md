@@ -1,7 +1,7 @@
 ---
 id: content-003
 title: "Building Your AI Orchestra: A Playbook for Multi-Agent Workflows"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

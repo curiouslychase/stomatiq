@@ -1,7 +1,7 @@
 ---
 id: content-010
 title: "Systems for Self-Evident Decisions"
-type: task
+type: content
 status: planned
 priority: high
 assignee: null

@@ -1,7 +1,7 @@
 ---
 id: content-012
 title: "APIs Over Meetings: Why Automations Replace Coordination"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

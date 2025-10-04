@@ -1,7 +1,7 @@
 ---
 id: content-008
 title: "Frameworks as Leverage: How to Use AI to Find Patterns and Synthesize Them"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

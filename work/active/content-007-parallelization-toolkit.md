@@ -1,7 +1,7 @@
 ---
 id: content-007
 title: "The Parallelization Toolkit: How to Multiply Your Presence Across Projects"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

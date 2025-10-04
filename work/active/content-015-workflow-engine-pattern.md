@@ -1,7 +1,7 @@
 ---
 id: content-015
 title: "The Workflow Engine Pattern: Building Reusable Automation Blocks with AI"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null

@@ -1,7 +1,7 @@
 ---
 id: content-004
 title: "From Maker to Director: Training Your Taste and Judgment"
-type: task
+type: content
 status: planned
 priority: medium
 assignee: null
