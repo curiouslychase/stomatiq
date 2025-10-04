@@ -143,9 +143,22 @@ export async function getPost(slug: string): Promise<Post | null> {
   }
 }
 
+function shouldDisplayPost(post: PostMeta): boolean {
+  // If DISPLAY_FUTURE_POSTS is set to "true", show all posts
+  if (process.env.DISPLAY_FUTURE_POSTS === "true") {
+    return true;
+  }
+
+  // Otherwise, filter out posts with future dates
+  const postDate = new Date(post.date);
+  const now = new Date();
+  return postDate <= now;
+}
+
 export function getAllPostsMeta(): PostMeta[] {
   return listPostSlugs()
     .map((slug) => getPostMeta(slug))
     .filter((m): m is PostMeta => Boolean(m))
+    .filter(shouldDisplayPost)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

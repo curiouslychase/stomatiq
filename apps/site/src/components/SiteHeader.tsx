@@ -3,9 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import StomaticLogo from "./StomaticLogo";
+import NewsletterSubscribe from "./NewsletterSubscribe";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [subscribeOpen, setSubscribeOpen] = useState(false);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -46,6 +54,12 @@ export default function SiteHeader() {
                 <Link href="/newsletter" className="hover:underline">
                   Newsletter
                 </Link>
+                <button
+                  onClick={() => setSubscribeOpen(true)}
+                  className="hover:underline"
+                >
+                  Subscribe
+                </button>
               </nav>
 
               {/* Mobile menu button */}
@@ -134,6 +148,15 @@ export default function SiteHeader() {
               >
                 Newsletter
               </Link>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setSubscribeOpen(true);
+                }}
+                className="hover:underline text-left"
+              >
+                Subscribe
+              </button>
               <Link
                 href="/rss.xml"
                 className="hover:underline"
@@ -145,6 +168,19 @@ export default function SiteHeader() {
           </div>
         </div>
       )}
+
+      {/* Subscribe modal */}
+      <Dialog open={subscribeOpen} onOpenChange={setSubscribeOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="sr-only">Subscribe to newsletter</DialogTitle>
+          </DialogHeader>
+          <NewsletterSubscribe
+            variant="article"
+            className="border-0 shadow-none p-0"
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
