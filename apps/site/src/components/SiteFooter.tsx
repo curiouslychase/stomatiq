@@ -35,6 +35,9 @@ export default function SiteFooter() {
               className="flex flex-col gap-2 items-end text-[11px] uppercase text-foreground/70 md:text-xs mb-5"
               style={{ fontFamily: "var(--font-mono)" }}
             >
+              <Link href="/aboutique" className="hover:text-foreground">
+                About
+              </Link>
               <Link href="/newsletter" className="hover:text-foreground">
                 Newsletter
               </Link>

@@ -52,6 +52,9 @@ export default function SiteHeader() {
                 className="hidden md:flex items-center gap-6 text-[13px] uppercase text-foreground/80"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
+                <Link href="/aboutique" className="hover:underline">
+                  About
+                </Link>
                 <Link href="/newsletter" className="hover:underline">
                   Newsletter
                 </Link>
@@ -143,6 +146,13 @@ export default function SiteHeader() {
               className="mt-8 flex flex-col gap-6 text-base uppercase text-foreground/80"
               style={{ fontFamily: "var(--font-mono)" }}
             >
+              <Link
+                href="/aboutique"
+                className="hover:underline"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
               <Link
                 href="/newsletter"
                 className="hover:underline"
