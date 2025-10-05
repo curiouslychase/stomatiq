@@ -62,7 +62,6 @@ Specifically:
 ## Outline
 
 ### Opening Hook
-"You're standing in a river. The question isn't whether you'll get wet—it's whether you're in a gentle stream or approaching a waterfall, and whether you're alone or the entire riverbed is shifting beneath everyone."
 
 Start with the disorientation people feel: some changes affect them directly but feel manageable; others feel systemic but abstract. The problem is we treat all change the same way.
 
