@@ -18,6 +18,7 @@ import FederatedArchitecture from "../components/mdx/FederatedArchitecture";
 import TeamSizeEvolution from "../components/mdx/TeamSizeEvolution";
 import InstitutionalLag from "../components/mdx/InstitutionalLag";
 import BottleneckShift from "../components/mdx/BottleneckShift";
+import QuadrantTooltip from "../components/mdx/QuadrantTooltip";
 
 export type PostMeta = {
   slug: string;
@@ -174,6 +175,7 @@ export async function getPost(slug: string): Promise<Post | null> {
         TeamSizeEvolution,
         InstitutionalLag,
         BottleneckShift,
+        QuadrantTooltip,
       }),
     });
 
