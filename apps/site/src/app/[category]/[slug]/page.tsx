@@ -170,6 +170,7 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
                     <CopyButtons
                       url={`https://stomatiq.com/${category}/${slug}`}
                       markdown={post.rawMarkdown ?? ''}
+                      title={post.title}
                     />
                   </dd>
                 </div>
