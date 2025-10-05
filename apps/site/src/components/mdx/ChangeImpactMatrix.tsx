@@ -35,7 +35,8 @@ const quadrants: Quadrant[] = [
     id: 2,
     title: "Personal Disruption",
     subtitle: "Volatile Change, Affects Me",
-    description: "Rapid changes hitting you directly, demanding immediate adaptation.",
+    description:
+      "Rapid changes hitting you directly, demanding immediate adaptation.",
     examples: [
       "Your role is being partially automated",
       "A key skill is suddenly obsolete",
@@ -50,7 +51,8 @@ const quadrants: Quadrant[] = [
     id: 3,
     title: "Systemic Stability",
     subtitle: "Low Change, Affects the System",
-    description: "Established institutions and stable industries that affect everyone.",
+    description:
+      "Established institutions and stable industries that affect everyone.",
     examples: [
       "Regulatory frameworks",
       "Professional certifications",
@@ -65,7 +67,8 @@ const quadrants: Quadrant[] = [
     id: 4,
     title: "Systemic Volatility",
     subtitle: "Volatile Change, Affects the System",
-    description: "Rapid systemic shifts reshaping entire industries and economies.",
+    description:
+      "Rapid systemic shifts reshaping entire industries and economies.",
     examples: [
       "AI transforming job categories",
       "New economic models emerging",
@@ -95,10 +98,10 @@ export default function ChangeImpactMatrix() {
         <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm font-mono uppercase text-foreground/60">
           Change: None
         </div>
-        <div className="absolute top-1/2 -left-32 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60">
+        <div className="absolute top-1/2 -left-16 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60 whitespace-nowrap">
           Affects Me
         </div>
-        <div className="absolute top-1/2 -right-32 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60">
+        <div className="absolute top-1/2 -right-25 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60 whitespace-nowrap">
           Affects the System
         </div>
 
@@ -106,7 +109,8 @@ export default function ChangeImpactMatrix() {
         <div className="grid grid-cols-2 grid-rows-2 gap-3 h-full">
           {quadrants.map((quadrant) => {
             const isActive = activeQuadrant === quadrant.id;
-            const isOtherActive = activeQuadrant !== null && activeQuadrant !== quadrant.id;
+            const isOtherActive =
+              activeQuadrant !== null && activeQuadrant !== quadrant.id;
 
             return (
               <motion.button
@@ -122,7 +126,11 @@ export default function ChangeImpactMatrix() {
                 whileTap={{ scale: 0.98 }}
                 onMouseEnter={() => setHoveredQuadrant(quadrant.id)}
                 onMouseLeave={() => setHoveredQuadrant(null)}
-                onClick={() => setSelectedQuadrant(selectedQuadrant === quadrant.id ? null : quadrant.id)}
+                onClick={() =>
+                  setSelectedQuadrant(
+                    selectedQuadrant === quadrant.id ? null : quadrant.id
+                  )
+                }
                 aria-label={`Quadrant ${quadrant.id}: ${quadrant.title}`}
               >
                 <div className="space-y-2">
@@ -132,7 +140,9 @@ export default function ChangeImpactMatrix() {
                   <h3 className="font-mono font-bold text-base uppercase tracking-wide text-foreground">
                     {quadrant.title}
                   </h3>
-                  <p className="text-xs font-mono text-foreground/70">{quadrant.subtitle}</p>
+                  <p className="text-xs font-mono text-foreground/70">
+                    {quadrant.subtitle}
+                  </p>
                 </div>
 
                 {isActive && (
@@ -162,8 +172,13 @@ export default function ChangeImpactMatrix() {
                         </div>
                         <ul className="space-y-1.5">
                           {quadrant.examples.map((example, idx) => (
-                            <li key={idx} className="text-xs text-foreground/70 flex items-start gap-2">
-                              <span className="text-foreground/40 mt-0.5">•</span>
+                            <li
+                              key={idx}
+                              className="text-xs text-foreground/70 flex items-start gap-2"
+                            >
+                              <span className="text-foreground/40 mt-0.5">
+                                •
+                              </span>
                               <span>{example}</span>
                             </li>
                           ))}
@@ -173,7 +188,9 @@ export default function ChangeImpactMatrix() {
                         <div className="text-xs font-mono uppercase text-foreground/60 mb-1">
                           Strategy:
                         </div>
-                        <p className="text-xs font-semibold text-foreground">{quadrant.strategy}</p>
+                        <p className="text-xs font-semibold text-foreground">
+                          {quadrant.strategy}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
