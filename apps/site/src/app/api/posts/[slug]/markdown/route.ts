@@ -54,10 +54,14 @@ export async function GET(
   }
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { content } = matter(fileContents);
+  const { content, data } = matter(fileContents);
 
   // Strip JSX/HTML to get clean markdown
   const cleanMarkdown = stripJSXAndHTML(content);
 
-  return NextResponse.json({ markdown: cleanMarkdown });
+  // Add title as H1 at the top if it exists
+  const title = data.title ? `# ${data.title}\n\n` : '';
+  const markdownWithTitle = title + cleanMarkdown;
+
+  return NextResponse.json({ markdown: markdownWithTitle });
 }
