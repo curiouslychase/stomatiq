@@ -60,26 +60,27 @@ export function CopyButtons({ url, markdown, title }: CopyButtonsProps) {
 
     switch (optionValue) {
       case "eli5":
-        promptPrefix = "Please explain this article like I'm 5 years old. ";
+        promptPrefix = "Please read this article and explain it like I'm 5 years old";
         break;
       case "critique":
         promptPrefix =
-          "Please provide a critical analysis of this article, including strengths, weaknesses, and alternative perspectives. ";
+          "Please read this article and provide a critical analysis, including strengths, weaknesses, and alternative perspectives";
         break;
       case "summary":
-        promptPrefix = "Please summarize the key points from this article. ";
+        promptPrefix = "Please read this article and summarize the key points";
         break;
       default:
-        promptPrefix = "I'd like to discuss this article with you. ";
+        promptPrefix = "I'd like to discuss this article with you";
     }
 
-    return `${promptPrefix}Article: "${title}" by Chase Adams, a software engineer.\n\n${markdown}`;
+    return `${promptPrefix}: ${url}`;
   };
 
   const getChatUrl = (optionValue: string) => {
     const prompt = getPromptText(optionValue);
-    const encodedPrompt = encodeURIComponent(prompt);
-    return `https://chat.openai.com/?q=${encodedPrompt}`;
+    // Use encodeURIComponent then convert %20 to + for form-style encoding
+    const encodedPrompt = encodeURIComponent(prompt).replace(/%20/g, '+');
+    return `https://chatgpt.com/?q=${encodedPrompt}`;
   };
 
   return (

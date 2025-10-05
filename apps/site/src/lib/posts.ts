@@ -160,6 +160,10 @@ function stripJSXAndHTML(content: string): string {
   // Trim overall content
   cleaned = cleaned.trim();
 
+  // Remove markdown formatting characters (bold/italic asterisks)
+  cleaned = cleaned.replace(/\*\*/g, ''); // Remove bold **
+  cleaned = cleaned.replace(/\*/g, ''); // Remove italic *
+
   return cleaned;
 }
 

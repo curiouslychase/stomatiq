@@ -89,24 +89,24 @@ export default function ChangeImpactMatrix() {
 
   return (
     <div className="my-12 space-y-6" data-mdx-component="ChangeImpactMatrix">
-      <div className="relative w-full aspect-square max-w-3xl mx-auto">
+      <div className="relative w-full aspect-square max-w-3xl mx-auto px-12 md:px-0">
         {/* Axis Labels */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm font-mono uppercase text-foreground/60 flex items-center gap-2">
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs md:text-sm font-mono uppercase text-foreground/60 flex items-center gap-2">
           <ArrowUpRight className="w-4 h-4" />
           Change: Volatile
         </div>
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm font-mono uppercase text-foreground/60">
+        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs md:text-sm font-mono uppercase text-foreground/60">
           Change: None
         </div>
-        <div className="absolute top-1/2 -left-16 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60 whitespace-nowrap">
+        <div className="absolute top-1/2 -left-3 md:-left-16 -translate-y-1/2 -rotate-90 text-xs md:text-sm font-mono uppercase text-foreground/60 whitespace-nowrap origin-center">
           Affects Me
         </div>
-        <div className="absolute top-1/2 -right-25 -translate-y-1/2 -rotate-90 text-sm font-mono uppercase text-foreground/60 whitespace-nowrap">
+        <div className="absolute top-1/2 -right-12 md:-right-25 -translate-y-1/2 -rotate-90 text-xs md:text-sm font-mono uppercase text-foreground/60 whitespace-nowrap origin-center">
           Affects the System
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-2 grid-rows-2 gap-3 h-full">
+        <div className="grid grid-cols-2 grid-rows-2 gap-3 h-full" id="quadrant-grid">
           {quadrants.map((quadrant) => {
             const isActive = activeQuadrant === quadrant.id;
             const isOtherActive =
@@ -137,7 +137,7 @@ export default function ChangeImpactMatrix() {
                   <div className="text-xs font-mono uppercase text-foreground/50">
                     Q{quadrant.id}
                   </div>
-                  <h3 className="font-mono font-bold text-base uppercase tracking-wide text-foreground">
+                  <h3 className="font-mono font-bold text-sm md:text-base uppercase tracking-wide text-foreground">
                     {quadrant.title}
                   </h3>
                   <p className="text-xs font-mono text-foreground/70">
@@ -198,9 +198,9 @@ export default function ChangeImpactMatrix() {
         </div>
 
         {/* Center Crosshair */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div className="w-full h-px bg-foreground/10" />
-          <div className="absolute w-px h-full bg-foreground/10" />
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center p-0 hidden md:block">
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-foreground/10" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-foreground/10" />
         </div>
       </div>
 
