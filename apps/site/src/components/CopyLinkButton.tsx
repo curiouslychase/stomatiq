@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Copy, Check, FileText, ChevronDown } from "lucide-react";
+import { Copy, Check, FileText, ChevronDown, Link } from "lucide-react";
 
 interface CopyButtonsProps {
   url: string;
@@ -97,7 +97,7 @@ export function CopyButtons({ url, markdown, title }: CopyButtonsProps) {
           </>
         ) : (
           <>
-            <Copy className="h-4 w-4" />
+            <Link className="h-4 w-4" />
             <span>Copy Link</span>
           </>
         )}

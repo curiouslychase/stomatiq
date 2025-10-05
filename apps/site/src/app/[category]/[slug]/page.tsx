@@ -1,15 +1,15 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { getPost, getAllPostsMeta } from '@/lib/posts';
-import { CopyButtons } from '@/components/CopyLinkButton';
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { getPost, getAllPostsMeta } from "@/lib/posts";
+import { CopyButtons } from "@/components/CopyLinkButton";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = false;
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
 });
 
 const formatDate = (value: string) => {
@@ -27,18 +27,24 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string; slug: string }>;
+}) {
   const { slug } = await params;
   const post = await getPost(slug);
 
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: "Post Not Found",
     };
   }
 
   const pageTitle = `${post.title} – Newsletter`;
-  const description = post.excerpt ?? 'Essays and updates on product, engineering, and AI at Stomatiq.';
+  const description =
+    post.excerpt ??
+    "Essays and updates on product, engineering, and AI at Stomatiq.";
   const ogImage = `/api/og/${post.slug}.png`;
 
   return {
@@ -48,12 +54,16 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
       title: pageTitle,
       description,
       images: [ogImage],
-      type: 'article',
+      type: "article",
     },
   };
 }
 
-export default async function CategoryPostPage({ params }: { params: Promise<{ category: string; slug: string }> }) {
+export default async function CategoryPostPage({
+  params,
+}: {
+  params: Promise<{ category: string; slug: string }>;
+}) {
   const { category, slug } = await params;
   const post = await getPost(slug);
 
@@ -62,7 +72,9 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
   }
 
   const { Content } = post;
-  const heroDescription = post.excerpt ?? 'Essays and updates on product, engineering, and AI at Stomatiq.';
+  const heroDescription =
+    post.excerpt ??
+    "Essays and updates on product, engineering, and AI at Stomatiq.";
 
   return (
     <main className="mx-auto max-w-6xl py-10">
@@ -70,7 +82,7 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
         <header className="space-y-8 px-4 md:px-0">
           <div className="relative overflow-hidden rounded-3xl bg-foreground/80 pb-10 pt-40 text-white">
             <Image
-              src={post.cover ?? '/images/wave-001.png'}
+              src={post.cover ?? "/images/wave-001.png"}
               alt=""
               fill
               className="pointer-events-none object-cover"
@@ -89,7 +101,7 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
         </header>
 
         <div className="mt-8 flex flex-col-reverse gap-10 lg:flex-row px-4 md:px-0">
-          <aside className="space-y-4 self-start rounded-2xl border border-foreground/10 bg-background-alt/40 p-6 shadow-sm lg:sticky lg:top-24 lg:w-72 lg:flex-shrink-0">
+          <aside className="space-y-4 self-start rounded-2xl border border-foreground/10 bg-background-alt/40 p-6 shadow-sm lg:sticky lg:top-30 lg:w-72 lg:flex-shrink-0">
             <div className="space-y-3">
               <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/60">
                 Post Details
@@ -123,7 +135,10 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
                     <dd>
                       <ul className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-foreground/60">
                         {post.tags.map((tag) => (
-                          <li key={tag} className="rounded-full border border-foreground/15 px-3 py-1">
+                          <li
+                            key={tag}
+                            className="rounded-full border border-foreground/15 px-3 py-1"
+                          >
                             {tag}
                           </li>
                         ))}
@@ -169,7 +184,7 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
                   <dd>
                     <CopyButtons
                       url={`https://stomatiq.com/${category}/${slug}`}
-                      markdown={post.rawMarkdown ?? ''}
+                      markdown={post.rawMarkdown ?? ""}
                       title={post.title}
                     />
                   </dd>
@@ -179,7 +194,10 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
           </aside>
 
           <div className="prose-wrapper w-full space-y-6 text-lg leading-8 text-foreground/80 [&_strong]:text-foreground lg:flex-1">
-            <div className="space-y-6 font-serif text-foreground" data-heading-scope>
+            <div
+              className="space-y-6 font-serif text-foreground"
+              data-heading-scope
+            >
               <Content />
             </div>
           </div>

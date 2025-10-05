@@ -31,8 +31,8 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-screen px-4 md:px-6">
-        <div className="relative w-full rounded-b-lg max-w-6xl mx-auto border border-t-0 border-foreground/[.06] bg-background">
+      <header className="sticky top-4 z-40 w-screen px-4 md:px-6">
+        <div className="relative w-full rounded-lg max-w-6xl mx-auto border border-foreground/[.06] bg-background">
           <div className="px-4 py-2 md:px-6">
             <div className="flex h-16 items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
