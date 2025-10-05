@@ -119,7 +119,7 @@ export default function DiagnosticFlow() {
   const currentResult = results[currentStep];
 
   return (
-    <div className="my-12 max-w-3xl mx-auto space-y-6">
+    <div data-mdx-component="DiagnosticFlow" className="my-12 max-w-3xl mx-auto space-y-6">
       <div className="text-center space-y-2">
         <h3 className="text-lg font-mono font-bold uppercase text-foreground">
           Diagnostic Tool

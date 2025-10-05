@@ -10,7 +10,7 @@ interface ProcessStepsProps {
 
 export default function ProcessSteps({ steps }: ProcessStepsProps) {
   return (
-    <div className="my-10 space-y-4">
+    <div data-mdx-component="ProcessSteps" className="my-10 space-y-4">
       {steps.map((step, index) => (
         <div
           key={index}

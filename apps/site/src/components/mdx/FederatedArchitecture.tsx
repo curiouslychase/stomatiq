@@ -62,7 +62,7 @@ export default function FederatedArchitecture() {
   const [expandedDomain, setExpandedDomain] = useState<string | null>(null);
 
   return (
-    <div className="my-10 space-y-4">
+    <div data-mdx-component="FederatedArchitecture" className="my-10 space-y-4">
       <div className="overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
         <div className="flex items-center justify-between border-b border-foreground/10 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] text-foreground/70">
           <span>Federated Architecture</span>

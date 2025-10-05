@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { getPost, getAllPostsMeta } from '@/lib/posts';
+import { CopyButtons } from '@/components/CopyLinkButton';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -161,6 +162,14 @@ export default async function CategoryPostPage({ params }: { params: Promise<{ c
                     </dd>
                   </div>
                 )}
+                <div className="flex flex-col gap-1 pt-2">
+                  <dt className="text-xs uppercase tracking-[0.2em] text-foreground/40">
+                    Share
+                  </dt>
+                  <dd>
+                    <CopyButtons url={`https://stomatiq.com/${category}/${slug}`} slug={slug} />
+                  </dd>
+                </div>
               </dl>
             </div>
           </aside>

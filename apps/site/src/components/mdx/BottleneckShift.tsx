@@ -11,7 +11,7 @@ export default function BottleneckShift() {
   const aiAugmentedComplexity = teamSize; // linear connections
 
   return (
-    <div className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
+    <div data-mdx-component="BottleneckShift" className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
       <div className="flex items-center justify-between border-b border-foreground/10 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] text-foreground/70">
         <span>The Bottleneck Shift</span>
         <span>Coordination → Orchestration</span>

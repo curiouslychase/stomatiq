@@ -8,6 +8,8 @@ author: Chase Adams
 category: Developer Tools
 ---
 
+I don't think Guilermo Rauche, Adam Wathan or ShadCN went into what they were building with the goal of winning the AI race...but they did and I want to talk about how I think it happened.
+
 I still remember the first time I integrated the Vercel AI SDK into a client project last March. We'd spent two weeks wrestling with raw OpenAI streams, building state machines, debugging WebSocket edge cases. Then I tried `useChat`.
 
 Import it from `ai/react`, add it to a component, and—streaming text. Real-time responses. Message state that just... works.

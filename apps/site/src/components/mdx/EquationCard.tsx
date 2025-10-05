@@ -12,7 +12,7 @@ export default function EquationCard({
   dotText
 }: EquationCardProps) {
   return (
-    <div className="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
+    <div data-mdx-component="EquationCard" className="flex flex-col rounded-3xl border border-foreground/12 bg-background-alt/50 p-6">
       <span className="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-foreground/60">
         {label}
       </span>

@@ -57,7 +57,7 @@ export default function QuadrantMovement() {
   }, []);
 
   return (
-    <div className="my-12 space-y-6">
+    <div className="my-12 space-y-6" data-mdx-component="QuadrantMovement">
       <div className="text-center space-y-2">
         <div className="inline-flex items-center gap-2 text-sm font-mono uppercase text-foreground/60 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10">
           <TrendingUp className="w-4 h-4" />
@@ -109,7 +109,7 @@ export default function QuadrantMovement() {
                     id={`arrowhead-${idx}`}
                     markerWidth="10"
                     markerHeight="10"
-                    refX="9"
+                    refX="10"
                     refY="3"
                     orient="auto"
                   >
@@ -129,7 +129,7 @@ export default function QuadrantMovement() {
                   strokeDasharray="3,2"
                   markerEnd={`url(#arrowhead-${idx})`}
                   animate={controls}
-                  initial={{ pathLength: 0, opacity: 0.3 }}
+                  initial={{ pathLength: 0, opacity: 0 }}
                   opacity={isOtherSelected ? 0.2 : 1}
                 />
 
@@ -153,7 +153,7 @@ export default function QuadrantMovement() {
               id="main-arrow"
               markerWidth="12"
               markerHeight="12"
-              refX="10"
+              refX="12"
               refY="4"
               orient="auto"
             >
@@ -168,7 +168,7 @@ export default function QuadrantMovement() {
             strokeDasharray="4,4"
             markerEnd="url(#main-arrow)"
             animate={controls}
-            initial={{ pathLength: 0, opacity: 0.5 }}
+            initial={{ pathLength: 0, opacity: 0 }}
           />
         </svg>
 

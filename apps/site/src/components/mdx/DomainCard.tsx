@@ -6,7 +6,7 @@ interface DomainCardProps {
 
 export default function DomainCard({ index, title, items }: DomainCardProps) {
   return (
-    <div className="relative flex flex-col rounded-3xl border border-foreground/10 bg-background-alt/70 px-7 py-8 md:pl-16">
+    <div data-mdx-component="DomainCard" className="relative flex flex-col rounded-3xl border border-foreground/10 bg-background-alt/70 px-7 py-8 md:pl-16">
       <span className="text-xs font-mono uppercase tracking-[0.16em] text-foreground/60">
         Domain {index}
       </span>

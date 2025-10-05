@@ -18,7 +18,7 @@ export default function IterationCard({
   badgeClass = "text-foreground/50"
 }: IterationCardProps) {
   return (
-    <div className="flex flex-col rounded-2xl border border-foreground/8 bg-background-alt/70 p-5">
+    <div data-mdx-component="IterationCard" className="flex flex-col rounded-2xl border border-foreground/8 bg-background-alt/70 p-5">
       <span className={`text-[0.7rem] font-mono uppercase tracking-[0.14em] ${badgeClass}`}>
         {label}
       </span>

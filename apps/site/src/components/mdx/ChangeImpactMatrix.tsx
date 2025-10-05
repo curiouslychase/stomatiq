@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, Maximize2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface Quadrant {
   id: number;
@@ -45,7 +45,7 @@ const quadrants: Quadrant[] = [
     ],
     strategy: "Adapt quickly, build resilience",
     color: "bg-chart-1/10 dark:bg-chart-1/20 border-chart-1/30",
-    position: { x: 1, y: 1 },
+    position: { x: 0, y: 0 },
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const quadrants: Quadrant[] = [
     ],
     strategy: "Play the long game",
     color: "bg-chart-2/10 dark:bg-chart-2/20 border-chart-2/30",
-    position: { x: 0, y: 0 },
+    position: { x: 1, y: 1 },
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ export default function ChangeImpactMatrix() {
   const activeQuadrant = selectedQuadrant ?? hoveredQuadrant;
 
   return (
-    <div className="my-12 space-y-6">
+    <div className="my-12 space-y-6" data-mdx-component="ChangeImpactMatrix">
       <div className="relative w-full aspect-square max-w-3xl mx-auto">
         {/* Axis Labels */}
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm font-mono uppercase text-foreground/60 flex items-center gap-2">
@@ -120,7 +120,7 @@ export default function ChangeImpactMatrix() {
                 }`}
                 style={{
                   gridColumn: quadrant.position.x + 1,
-                  gridRow: 2 - quadrant.position.y,
+                  gridRow: 1 + quadrant.position.y,
                 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -152,16 +152,13 @@ export default function ChangeImpactMatrix() {
                     className="absolute inset-0 rounded-xl bg-background-alt border-2 border-foreground/20 p-4 z-10 overflow-auto"
                   >
                     <div className="space-y-3">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <div className="text-xs font-mono uppercase text-foreground/50 mb-1">
-                            Q{quadrant.id}
-                          </div>
-                          <h3 className="font-mono font-bold text-sm uppercase text-foreground">
-                            {quadrant.title}
-                          </h3>
+                      <div>
+                        <div className="text-xs font-mono uppercase text-foreground/50 mb-1">
+                          Q{quadrant.id}
                         </div>
-                        <Maximize2 className="w-4 h-4 text-foreground/50" />
+                        <h3 className="font-mono font-bold text-sm uppercase text-foreground">
+                          {quadrant.title}
+                        </h3>
                       </div>
                       <p className="text-xs leading-relaxed text-foreground/80">
                         {quadrant.description}
@@ -207,7 +204,7 @@ export default function ChangeImpactMatrix() {
         </div>
       </div>
 
-      <p className="text-sm text-center text-foreground/60 font-mono">
+      <p className="mt-12 text-sm text-center text-foreground/60 font-mono">
         Click or hover on any quadrant to explore examples and strategies
       </p>
     </div>

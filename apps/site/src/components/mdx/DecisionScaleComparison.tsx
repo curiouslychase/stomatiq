@@ -14,7 +14,7 @@ export default function DecisionScaleComparison() {
   ];
 
   return (
-    <div className="my-10 overflow-hidden rounded-3xl border border-foreground/10 bg-background-alt/40">
+    <div data-mdx-component="DecisionScaleComparison" className="my-10 overflow-hidden rounded-3xl border border-foreground/10 bg-background-alt/40">
       <div className="flex items-center justify-between border-b border-foreground/10 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] text-foreground/70">
         <span>Scaling Model Comparison</span>
         <span>4-Week Timeline</span>

@@ -43,7 +43,7 @@ const tradeoffs: TradeoffItem[] = [
 
 export default function TradeoffMatrix() {
   return (
-    <div className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
+    <div data-mdx-component="TradeoffMatrix" className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
       <div className="flex items-center justify-between border-b border-foreground/10 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] text-foreground/70">
         <span>Tradeoff Analysis</span>
         <span>Traditional vs Lean Teams</span>

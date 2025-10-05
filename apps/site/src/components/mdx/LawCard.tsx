@@ -12,7 +12,7 @@ export default function LawCard({
   description,
 }: LawCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-foreground/12 bg-background-alt/60 shadow-sm p-6">
+    <div data-mdx-component="LawCard" className="group relative overflow-hidden rounded-2xl border border-foreground/12 bg-background-alt/60 shadow-sm p-6">
       <div className="flex items-center justify-between text-xs font-mono uppercase text-foreground/60">
         <span>Law {index}</span>
         <span>{year}</span>

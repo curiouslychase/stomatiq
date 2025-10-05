@@ -48,7 +48,7 @@ const eras: Era[] = [
 
 export default function TeamSizeEvolution() {
   return (
-    <div className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
+    <div data-mdx-component="TeamSizeEvolution" className="my-10 overflow-hidden rounded-xl border border-foreground/10 bg-background-alt/40">
       <div className="flex items-center justify-between border-b border-foreground/10 px-6 py-4 font-mono text-xs uppercase tracking-[0.14em] text-foreground/70">
         <span>Team Size Evolution</span>
         <span>The Compression of Work</span>

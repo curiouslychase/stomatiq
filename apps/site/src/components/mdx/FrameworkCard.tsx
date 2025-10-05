@@ -14,7 +14,7 @@ export default function FrameworkCard({
   children
 }: FrameworkCardProps) {
   return (
-    <div className="my-8 overflow-hidden rounded-3xl border border-foreground/10 bg-background-alt/40">
+    <div data-mdx-component="FrameworkCard" className="my-8 overflow-hidden rounded-3xl border border-foreground/10 bg-background-alt/40">
       <div className="border-b border-foreground/10 px-6 py-4">
         <h4 className="font-mono text-sm font-bold uppercase tracking-[0.12em] text-foreground">
           {title}
