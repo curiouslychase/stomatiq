@@ -109,13 +109,37 @@ export function getPostMeta(slug: string): PostMeta | null {
 function stripJSXAndHTML(content: string): string {
   let cleaned = content;
 
+  // Map specific JSX components to readable text
+  const componentMappings: Record<string, (match: string) => string> = {
+    QuadrantTooltip: (match: string) => {
+      const quadrantMatch = match.match(/quadrant=\{(\d+)\}/);
+      if (quadrantMatch) {
+        const quadrantNum = quadrantMatch[1];
+        const quadrantNames: Record<string, string> = {
+          '1': 'Q1 (Personal Stability)',
+          '2': 'Q2 (Personal Disruption)',
+          '3': 'Q3 (Systemic Stability)',
+          '4': 'Q4 (Systemic Volatility)',
+        };
+        return quadrantNames[quadrantNum] || `Q${quadrantNum}`;
+      }
+      return '';
+    },
+  };
+
+  // Replace known JSX components with their text equivalents
+  for (const [componentName, mapper] of Object.entries(componentMappings)) {
+    const regex = new RegExp(`<${componentName}[^>]*\\/?>`, 'g');
+    cleaned = cleaned.replace(regex, (match) => mapper(match));
+  }
+
   // Remove JSX/HTML blocks (multi-line elements like <div>...</div>)
   cleaned = cleaned.replace(/<[^>]+>[\s\S]*?<\/[^>]+>/g, '\n');
 
-  // Remove self-closing JSX/HTML tags
+  // Remove remaining self-closing JSX/HTML tags
   cleaned = cleaned.replace(/<[^>]+\/>/g, '');
 
-  // Remove opening tags that weren't caught
+  // Remove remaining opening tags that weren't caught
   cleaned = cleaned.replace(/<[^>]+>/g, '');
 
   // Remove JSX comments

@@ -30,26 +30,34 @@ const movements: MovementPath[] = [
     example: "Personal skill → industry-wide standard",
     color: "stroke-chart-1",
   },
+  {
+    from: { x: 25, y: 75, label: "Personal Stability" },
+    to: { x: 75, y: 25, label: "Systemic Volatility" },
+    example: "Personal practice → systemic transformation",
+    color: "stroke-chart-3",
+  },
 ];
 
 export default function QuadrantMovement() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
   const [selectedPath, setSelectedPath] = useState<number | null>(null);
   const controls = useAnimationControls();
 
   const playAnimation = async () => {
     setIsPlaying(true);
+    setHasPlayed(true);
     await controls.start({
       pathLength: 1,
-      opacity: 1,
       transition: { duration: 2, ease: "easeInOut" },
     });
     setIsPlaying(false);
   };
 
   const resetAnimation = () => {
-    controls.set({ pathLength: 0, opacity: 0.3 });
+    controls.set({ pathLength: 0 });
     setIsPlaying(false);
+    setHasPlayed(false);
   };
 
   useEffect(() => {
@@ -103,35 +111,65 @@ export default function QuadrantMovement() {
 
             return (
               <g key={idx}>
-                {/* Arrow Path */}
-                <defs>
-                  <marker
-                    id={`arrowhead-${idx}`}
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="10"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon
-                      points="0 0, 10 3, 0 6"
-                      className={movement.color.replace("stroke", "fill")}
-                      opacity={isOtherSelected ? 0.2 : 1}
-                    />
-                  </marker>
-                </defs>
+                {/* Circle at start (before animation) */}
+                {!hasPlayed && (
+                  <motion.circle
+                    cx={movement.from.x}
+                    cy={movement.from.y}
+                    r={isSelected ? "2" : "1.5"}
+                    className={movement.color.replace("stroke", "fill")}
+                    opacity={isOtherSelected ? 0.2 : 0.6}
+                    initial={{ scale: 1 }}
+                    animate={{ scale: isSelected ? 1.2 : 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
 
-                <motion.path
-                  d={`M ${movement.from.x} ${movement.from.y} L ${movement.to.x} ${movement.to.y}`}
-                  className={movement.color}
-                  strokeWidth={isSelected ? "1.5" : "1"}
-                  fill="none"
-                  strokeDasharray="3,2"
-                  markerEnd={`url(#arrowhead-${idx})`}
-                  animate={controls}
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  opacity={isOtherSelected ? 0.2 : 1}
-                />
+                {/* Circle at end (before animation) */}
+                {!hasPlayed && (
+                  <motion.circle
+                    cx={movement.to.x}
+                    cy={movement.to.y}
+                    r={isSelected ? "2" : "1.5"}
+                    className={movement.color.replace("stroke", "fill")}
+                    opacity={isOtherSelected ? 0.2 : 0.6}
+                    initial={{ scale: 1 }}
+                    animate={{ scale: isSelected ? 1.2 : 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+
+                {/* Arrow Path (shown during/after animation) */}
+                <>
+                  <defs>
+                    <marker
+                      id={`arrowhead-${idx}`}
+                      markerWidth="10"
+                      markerHeight="10"
+                      refX="5"
+                      refY="3"
+                      orient="auto"
+                    >
+                      <polygon
+                        points="0 0, 10 3, 0 6"
+                        className={movement.color.replace("stroke", "fill")}
+                        opacity={isOtherSelected ? 0.2 : 1}
+                      />
+                    </marker>
+                  </defs>
+
+                  <motion.path
+                    d={`M ${movement.from.x} ${movement.from.y} L ${movement.to.x} ${movement.to.y}`}
+                    className={movement.color}
+                    strokeWidth={isSelected ? "1.5" : "1"}
+                    fill="none"
+                    strokeDasharray="3,2"
+                    markerEnd={`url(#arrowhead-${idx})`}
+                    animate={controls}
+                    initial={{ pathLength: 0 }}
+                    opacity={hasPlayed ? (isOtherSelected ? 0.2 : 1) : 0}
+                  />
+                </>
 
                 {/* Interactive Hit Area */}
                 <path
@@ -153,7 +191,7 @@ export default function QuadrantMovement() {
               id="main-arrow"
               markerWidth="12"
               markerHeight="12"
-              refX="12"
+              refX="6"
               refY="4"
               orient="auto"
             >
