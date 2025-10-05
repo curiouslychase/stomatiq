@@ -38,6 +38,7 @@ export type PostMeta = {
 export type Post = PostMeta & {
   readingMinutes: number;
   Content: React.ComponentType;
+  rawMarkdown?: string;
 };
 
 // Posts are in the parent src/content/posts directory
@@ -104,6 +105,39 @@ export function getPostMeta(slug: string): PostMeta | null {
   return toPostMeta(slug, data);
 }
 
+function stripJSXAndHTML(content: string): string {
+  let cleaned = content;
+
+  // Remove JSX/HTML blocks (multi-line elements like <div>...</div>)
+  cleaned = cleaned.replace(/<[^>]+>[\s\S]*?<\/[^>]+>/g, '\n');
+
+  // Remove self-closing JSX/HTML tags
+  cleaned = cleaned.replace(/<[^>]+\/>/g, '');
+
+  // Remove opening tags that weren't caught
+  cleaned = cleaned.replace(/<[^>]+>/g, '');
+
+  // Remove JSX comments
+  cleaned = cleaned.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
+
+  // Clean up multiple blank lines (more than 2 consecutive newlines)
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+  // Remove lines that are only whitespace
+  cleaned = cleaned.split('\n').filter(line => line.trim().length > 0 || line === '').join('\n');
+
+  // Clean up multiple blank lines again after filtering
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+  // Trim whitespace from each line while preserving structure
+  cleaned = cleaned.split('\n').map(line => line.trimEnd()).join('\n');
+
+  // Trim overall content
+  cleaned = cleaned.trim();
+
+  return cleaned;
+}
+
 export async function getPost(slug: string): Promise<Post | null> {
   const fullPathMd = path.join(postsDirectory, `${slug}.md`);
   const fullPathMdx = path.join(postsDirectory, `${slug}.mdx`);
@@ -146,7 +180,12 @@ export async function getPost(slug: string): Promise<Post | null> {
     const words = cleanedContent.split(/\s+/).filter(Boolean).length;
     const readingMinutes = Math.max(1, Math.round(words / 200));
 
-    return { ...meta, readingMinutes, Content };
+    // Prepare raw markdown without JSX/HTML
+    const cleanMarkdown = stripJSXAndHTML(content);
+    const title = data.title ? `# ${data.title}\n\n` : '';
+    const rawMarkdown = title + cleanMarkdown;
+
+    return { ...meta, readingMinutes, Content, rawMarkdown };
   } catch (error) {
     console.error(`Error compiling MDX for ${slug}:`, error);
     return null;

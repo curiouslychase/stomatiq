@@ -5,10 +5,10 @@ import { Copy, Check, FileText } from 'lucide-react';
 
 interface CopyButtonsProps {
   url: string;
-  slug: string;
+  markdown: string;
 }
 
-export function CopyButtons({ url, slug }: CopyButtonsProps) {
+export function CopyButtons({ url, markdown }: CopyButtonsProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedMarkdown, setCopiedMarkdown] = useState(false);
 
@@ -24,10 +24,7 @@ export function CopyButtons({ url, slug }: CopyButtonsProps) {
 
   const handleCopyMarkdown = async () => {
     try {
-      const response = await fetch(`/api/posts/${slug}/markdown`);
-      if (!response.ok) throw new Error('Failed to fetch markdown');
-      const data = await response.json();
-      await navigator.clipboard.writeText(data.markdown);
+      await navigator.clipboard.writeText(markdown);
       setCopiedMarkdown(true);
       setTimeout(() => setCopiedMarkdown(false), 2000);
     } catch (err) {
