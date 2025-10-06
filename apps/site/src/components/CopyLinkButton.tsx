@@ -16,7 +16,7 @@ const CHAT_OPTIONS = [
   { value: "summary", label: "Summarize key points" },
 ] as const;
 
-export function CopyButtons({ url, markdown, title }: CopyButtonsProps) {
+export function CopyButtons({ url, markdown }: CopyButtonsProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedMarkdown, setCopiedMarkdown] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
