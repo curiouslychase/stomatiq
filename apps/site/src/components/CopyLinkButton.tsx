@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Copy, Check, FileText, ChevronDown, Link } from "lucide-react";
+import { Check, ChevronDown, FileText, Link } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface CopyButtonsProps {
   url: string;
@@ -60,7 +60,8 @@ export function CopyButtons({ url, markdown, title }: CopyButtonsProps) {
 
     switch (optionValue) {
       case "eli5":
-        promptPrefix = "Please read this article and explain it like I'm 5 years old";
+        promptPrefix =
+          "Please read this article and explain it like I'm 5 years old";
         break;
       case "critique":
         promptPrefix =
@@ -79,7 +80,7 @@ export function CopyButtons({ url, markdown, title }: CopyButtonsProps) {
   const getChatUrl = (optionValue: string) => {
     const prompt = getPromptText(optionValue);
     // Use encodeURIComponent then convert %20 to + for form-style encoding
-    const encodedPrompt = encodeURIComponent(prompt).replace(/%20/g, '+');
+    const encodedPrompt = encodeURIComponent(prompt).replace(/%20/g, "+");
     return `https://chatgpt.com/?q=${encodedPrompt}`;
   };
 
