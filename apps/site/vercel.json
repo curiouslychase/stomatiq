@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/aboutique",
+      "destination": "https://curiouslychase.com/",
+      "permanent": true
+    },
+    {
+      "source": "/aboutique/:path*",
+      "destination": "https://curiouslychase.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://curiouslychase.com/:path*",
+      "permanent": true
+    }
+  ]
+}
