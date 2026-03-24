@@ -1,65 +1,164 @@
-import Image from "next/image";
+import { Logo } from "@/components/logo";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { SectionLabel } from "@/components/ui/section-label";
+import { GridCard } from "@/components/ui/grid-card";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { DotDivider } from "@/components/ui/dot-divider";
+import { ServiceAccordion } from "@/components/service-accordion";
+import { ConcentricCircles, TriangleGrid, OverlappingCircles } from "@/components/illustrations";
+import { siteConfig } from "@/lib/site-config";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <section id="hero" className="relative overflow-hidden" style={{ paddingTop: "10rem", paddingBottom: "7rem" }}>
+        {/* Background animated logo */}
+        <div
+          className="pointer-events-none absolute hidden md:block"
+          style={{ top: "50%", right: "-4%", transform: "translateY(-50%)", opacity: 0.12, color: "var(--color-text)" }}
+        >
+          <Logo size={400} animated />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="relative mx-auto max-w-5xl px-6">
+          <ScrollReveal>
+            <SectionLabel>AI Workflow Consultancy</SectionLabel>
+            <h1 style={{
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 700,
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
+              color: "var(--color-text)",
+              maxWidth: "720px",
+            }}>
+              AI workflows designed from scratch, not bolted on.
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <p style={{
+              marginTop: "1.5rem",
+              fontSize: "1.15rem",
+              lineHeight: 1.65,
+              color: "var(--color-text-secondary)",
+              maxWidth: "580px",
+              fontWeight: 300,
+            }}>
+              I help teams of 10&ndash;50 find and build the AI workflows that actually matter.
+              Not chatbots on broken processes. Workflows redesigned around what AI makes possible.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <div style={{ marginTop: "2.5rem" }}>
+              <MagneticButton href={siteConfig.calendly}>
+                BOOK A FREE AUDIT
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Philosophy */}
+      <section id="philosophy" style={{ padding: "6rem 0" }}>
+        <div className="mx-auto max-w-5xl px-6">
+          <ScrollReveal>
+            <SectionLabel>Philosophy</SectionLabel>
+            <h2 style={{
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text)",
+              marginBottom: "3rem",
+            }}>
+              AI-native, not AI-assisted
+            </h2>
+          </ScrollReveal>
+          <div className="grid gap-6 md:grid-cols-3">
+            <ScrollReveal delay={0}>
+              <GridCard
+                title="Workflow Audit"
+                number="001"
+                description="Find where AI actually helps vs where it&apos;s theater."
+                variant="featured"
+                illustration={<ConcentricCircles />}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={75}>
+              <GridCard
+                title="Redesign from Scratch"
+                number="002"
+                description="What would this process look like if AI existed when you built it?"
+                illustration={<TriangleGrid />}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={150}>
+              <GridCard
+                title="Build and Ship"
+                number="003"
+                description="Working systems, not slide decks. Implemented alongside your team."
+                illustration={<OverlappingCircles />}
+              />
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" style={{ padding: "6rem 0" }}>
+        <div className="mx-auto max-w-5xl px-6">
+          <ScrollReveal>
+            <SectionLabel>Services</SectionLabel>
+            <h2 style={{
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text)",
+              marginBottom: "3rem",
+            }}>
+              Three ways to work together
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal>
+            <ServiceAccordion />
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div style={{ marginTop: "3rem" }}>
+              <DotDivider animate />
+            </div>
+            <div style={{ marginTop: "2rem", textAlign: "center" }}>
+              <MagneticButton href={siteConfig.calendly}>
+                LET&apos;S TALK
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" style={{ padding: "6rem 0" }}>
+        <div className="mx-auto max-w-5xl px-6">
+          <ScrollReveal>
+            <SectionLabel>About</SectionLabel>
+          </ScrollReveal>
+          <ScrollReveal delay={75}>
+            <GridCard variant="minimal">
+              <div style={{ padding: "1.5rem", maxWidth: "640px" }}>
+                <p style={{
+                  color: "var(--color-text-secondary)",
+                  fontSize: "1.1rem",
+                  lineHeight: 1.7,
+                  fontWeight: 300,
+                }}>
+                  I&apos;m Chase. I lead engineering teams building AI systems every day.
+                  I started Stomatiq because I kept seeing the same pattern: smart teams
+                  bolting AI onto workflows that needed to be redesigned from the ground up.
+                  I&apos;d rather help you build the right thing.
+                </p>
+              </div>
+            </GridCard>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
   );
 }
