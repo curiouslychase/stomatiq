@@ -1,0 +1,11 @@
+- name: Engineering
+  slug: engineering
+  description: Software engineering deep dives and tutorials
+
+- name: Design
+  slug: design
+  description: UI/UX design principles and patterns
+
+- name: Product
+  slug: product
+  description: Product thinking and strategy
