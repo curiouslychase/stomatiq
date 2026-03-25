@@ -1,0 +1,105 @@
+---
+title: TypeScript Patterns for Modern React
+slug: typescript-patterns-for-react
+description: Essential TypeScript patterns that make your React code safer and more maintainable.
+date: "2024-12-15"
+published: true
+tags:
+  - typescript
+  - react
+  - patterns
+category: Engineering
+author: Stomatiq
+---
+
+TypeScript and React are a powerful combination. Here are patterns I reach for in every project.
+
+## Discriminated Unions for State
+
+Instead of multiple booleans, model state as a discriminated union:
+
+```typescript
+type AsyncState<T> =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success"; data: T }
+  | { status: "error"; error: Error };
+
+function useAsync<T>(): AsyncState<T> {
+  // Implementation
+}
+```
+
+This makes impossible states unrepresentable. You can't accidentally have both `loading: true` and `error: "something"`.
+
+## Polymorphic Components
+
+Create flexible components that render as different elements:
+
+```tsx
+type AsProps<T extends React.ElementType> = {
+  as?: T;
+} & React.ComponentPropsWithoutRef<T>;
+
+function Text<T extends React.ElementType = "span">({
+  as,
+  ...props
+}: AsProps<T>) {
+  const Component = as || "span";
+  return <Component {...props} />;
+}
+
+// Usage
+<Text as="h1" className="text-2xl">Heading</Text>
+<Text as="p">Paragraph</Text>
+```
+
+## Strict Event Handlers
+
+Type your event handlers precisely:
+
+```typescript
+function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  // Type-safe form handling
+}
+```
+
+## Generic Components
+
+Build reusable components that preserve type information:
+
+```tsx
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+  keyExtractor: (item: T) => string;
+}
+
+function List<T>({ items, renderItem, keyExtractor }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={keyExtractor(item)}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## The `satisfies` Operator
+
+Use `satisfies` to validate types without widening:
+
+```typescript
+const config = {
+  api: "/api",
+  docs: "/docs",
+  blog: "/blog",
+} satisfies Record<string, string>;
+
+// config.api is still typed as "/api", not string
+```
+
+These patterns form a solid foundation for type-safe React applications. The key is letting TypeScript's type system guide your component design toward correctness.
