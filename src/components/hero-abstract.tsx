@@ -28,13 +28,13 @@ const A_CY = 255;
 const RINGS = [
   // inner
   { ct: -0.52, crx: 125, cry: 58, cs: 0.5, ccx: 338, ccy: 250,
-    arx: 130, ary: 50, n: 5, phase: 0, label: "Workflows" },
+    arx: 130, ary: 50, n: 5, phase: 0 },
   // middle
   { ct: 0.70, crx: 200, cry: 85, cs: 1.1, ccx: 362, ccy: 262,
-    arx: 200, ary: 77, n: 4, phase: 0.39, label: "Org" },
+    arx: 200, ary: 77, n: 4, phase: 0.39 },
   // outer
   { ct: -0.09, crx: 270, cry: 110, cs: 0.3, ccx: 348, ccy: 256,
-    arx: 270, ary: 103, n: 6, phase: 0.63, label: "Mindset" },
+    arx: 270, ary: 103, n: 6, phase: 0.63 },
 ];
 
 /* ── Lock timing (seconds) ── */
@@ -43,13 +43,10 @@ const LOCKS: [number, number][] = [
   [3.5, 4.7],
   [5.0, 6.2],
 ];
-const LBL_FADE_S = 8.5;
-const LBL_FADE_E = 9.5;
-
-/* ── Loop timing ── */
-const CYCLE = 12;       // total loop duration (seconds)
-const FADE_IN = 0.8;    // fade-in at cycle start
-const FADE_OUT = 1.0;   // fade-out at cycle end
+/* ── Breathe (post-lock idle) ── */
+const BREATHE_EASE = 2.0;   // seconds to ease into idle sway
+const BREATHE_TILT = 0.45;  // max tilt offset
+const BREATHE_SPEED = 0.35; // oscillation speed
 
 const TOTAL_P = RINGS.reduce((s, r) => s + r.n, 0);
 
@@ -98,7 +95,6 @@ export function HeroAbstract() {
     let sharedA = 0;
     const chaosA = [0, 0.8, 1.6]; // staggered starts
     const stall = [1, 1, 1];
-    let lastCycle = 0;
 
     // Pre-allocated particle buffers
     const ppx = new Float64Array(TOTAL_P);
@@ -113,35 +109,23 @@ export function HeroAbstract() {
       last = now;
       const el = (now - t0) / 1000;
 
-      // Cycle tracking
-      const cycleNum = Math.floor(el / CYCLE);
-      const cel = el - cycleNum * CYCLE;
-
-      // Reset state on new cycle
-      if (cycleNum !== lastCycle) {
-        lastCycle = cycleNum;
-        chaosA[0] = 0; chaosA[1] = 0.8; chaosA[2] = 1.6;
-        stall[0] = 1; stall[1] = 1; stall[2] = 1;
-      }
-
-      // Global fade in/out between cycles
-      let globalAlpha = 1;
-      if (cel < FADE_IN) globalAlpha = cel / FADE_IN;
-      if (cel > CYCLE - FADE_OUT) globalAlpha = (CYCLE - cel) / FADE_OUT;
-
       ctx.clearRect(0, 0, W, H);
-      ctx.globalAlpha = globalAlpha;
 
-      // Lock progress per ring (use cycle-local time)
+      // Lock progress per ring
       const lk = RINGS.map((_, i) =>
-        easeIO(clamp((cel - LOCKS[i][0]) / (LOCKS[i][1] - LOCKS[i][0]))),
+        easeIO(clamp((el - LOCKS[i][0]) / (LOCKS[i][1] - LOCKS[i][0]))),
       );
       const allLocked = lk[0] >= 1 && lk[1] >= 1 && lk[2] >= 1;
+
+      // Post-lock breathe: gentle group tilt oscillation
+      const lockedSince = allLocked ? el - LOCKS[2][1] : 0;
+      const breatheAmt = clamp(lockedSince / BREATHE_EASE) * BREATHE_TILT;
+      const breathe = Math.sin(el * BREATHE_SPEED) * breatheAmt;
 
       // Advance angles
       sharedA += A_SPEED * dt;
       for (let i = 0; i < 3; i++) {
-        const noise = Math.sin(cel * 2.3 + i * 1.7) * 0.15 * RINGS[i].cs;
+        const noise = Math.sin(el * 2.3 + i * 1.7) * 0.15 * RINGS[i].cs;
         chaosA[i] += (RINGS[i].cs + noise) * stall[i] * dt;
       }
 
@@ -150,7 +134,7 @@ export function HeroAbstract() {
       for (let ri = 0; ri < 3; ri++) {
         const r = RINGS[ri];
         const l = lk[ri];
-        const tilt = lerp(r.ct, A_TILT, l);
+        const tilt = lerp(r.ct, A_TILT, l) + breathe;
         const rx = lerp(r.crx, r.arx, l);
         const ry = lerp(r.cry, r.ary, l);
         const cx = lerp(r.ccx, A_CX, l);
@@ -191,7 +175,7 @@ export function HeroAbstract() {
       for (let ri = 2; ri >= 0; ri--) {
         const r = RINGS[ri];
         const l = lk[ri];
-        const tilt = lerp(r.ct, A_TILT, l);
+        const tilt = lerp(r.ct, A_TILT, l) + breathe;
         const rx = lerp(r.crx, r.arx, l);
         const ry = lerp(r.cry, r.ary, l);
         const cx = lerp(r.ccx, A_CX, l);
@@ -233,24 +217,6 @@ export function HeroAbstract() {
         ctx.fill();
       }
 
-      // ── Labels ──
-      const lblX = [175, A_CX, 525];
-      const lblY = A_CY + 150;
-
-      for (let i = 0; i < 3; i++) {
-        if (lk[i] < 1) continue;
-        let op = clamp((cel - LOCKS[i][1]) / 0.8);
-        if (cel > LBL_FADE_S)
-          op *= 1 - clamp((cel - LBL_FADE_S) / (LBL_FADE_E - LBL_FADE_S));
-        if (op < 0.01) continue;
-
-        ctx.font = '13px "JetBrains Mono", monospace';
-        ctx.textAlign = "center";
-        ctx.fillStyle = rgba(CL, op * 0.7);
-        ctx.fillText(RINGS[i].label, lblX[i], lblY);
-      }
-
-      ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
     }
 

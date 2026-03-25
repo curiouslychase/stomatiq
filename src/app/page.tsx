@@ -36,7 +36,7 @@ export default function Home() {
               maxWidth: "580px",
               fontWeight: 300,
             }}>
-              We align workflows, org design, and mindset so your team moves as one thing&mdash;fast and sure.
+              We align workflows, org design, and mindset so your team moves with speed and confidence.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
