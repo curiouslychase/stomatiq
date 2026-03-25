@@ -235,7 +235,11 @@ section {
 
 @media (max-width: 767px) {
   .hero-visual {
-    display: none;
+    position: static;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    margin-top: 2rem;
   }
 }
 

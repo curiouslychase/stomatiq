@@ -24,7 +24,7 @@ export default function Home() {
               color: "var(--color-text)",
               maxWidth: "720px",
             }}>
-              AI workflows designed from scratch, not bolted on.
+              The bottleneck isn&apos;t your people. It&apos;s the space between them.
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -36,8 +36,7 @@ export default function Home() {
               maxWidth: "580px",
               fontWeight: 300,
             }}>
-              I help teams of 10&ndash;50 find and build the AI workflows that actually matter.
-              Not chatbots on broken processes. Workflows redesigned around what AI makes possible.
+              We align workflows, org design, and mindset so your team moves as one thing&mdash;fast and sure.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
