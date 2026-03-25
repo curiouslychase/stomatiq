@@ -1,10 +1,10 @@
-import { Logo } from "@/components/logo";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SectionLabel } from "@/components/ui/section-label";
 import { GridCard } from "@/components/ui/grid-card";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { DotDivider } from "@/components/ui/dot-divider";
 import { ServiceAccordion } from "@/components/service-accordion";
+import { HeroAbstract } from "@/components/hero-abstract";
 import { ConcentricCircles, TriangleGrid, OverlappingCircles } from "@/components/illustrations";
 import { siteConfig } from "@/lib/site-config";
 
@@ -12,16 +12,8 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section id="hero" className="relative overflow-hidden" style={{ paddingTop: "10rem", paddingBottom: "7rem" }}>
-        {/* Background animated logo */}
-        <div
-          className="pointer-events-none absolute hidden md:block"
-          style={{ top: "50%", right: "-4%", transform: "translateY(-50%)", opacity: 0.12, color: "var(--color-text)" }}
-        >
-          <Logo size={400} animated />
-        </div>
-
-        <div className="relative mx-auto max-w-5xl px-6">
+      <section id="hero" className="relative overflow-hidden" style={{ paddingTop: "10rem", paddingBottom: "3rem" }}>
+        <div className="relative mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>AI Workflow Consultancy</SectionLabel>
             <h1 style={{
@@ -55,12 +47,15 @@ export default function Home() {
               </MagneticButton>
             </div>
           </ScrollReveal>
+          <div className="hero-visual">
+            <HeroAbstract />
+          </div>
         </div>
       </section>
 
       {/* Philosophy */}
       <section id="philosophy" style={{ padding: "6rem 0" }}>
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>Philosophy</SectionLabel>
             <h2 style={{
@@ -105,7 +100,7 @@ export default function Home() {
 
       {/* Services */}
       <section id="services" style={{ padding: "6rem 0" }}>
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>Services</SectionLabel>
             <h2 style={{
@@ -136,7 +131,7 @@ export default function Home() {
 
       {/* About */}
       <section id="about" style={{ padding: "6rem 0" }}>
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>About</SectionLabel>
           </ScrollReveal>

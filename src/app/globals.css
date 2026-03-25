@@ -11,9 +11,9 @@
   --color-text: #E8E8ED;
   --color-text-secondary: #7A7B85;
   --color-text-muted: #4A4B55;
-  --color-accent: #5B8A72;
-  --color-accent-hover: #6B9A82;
-  --color-accent-muted: rgba(91, 138, 114, 0.15);
+  --color-accent: #8B7EC8;
+  --color-accent-hover: #9B8ED8;
+  --color-accent-muted: rgba(139, 126, 200, 0.15);
 }
 
 /* === LIGHT MODE === */
@@ -27,9 +27,9 @@
   --color-text: #1A1B21;
   --color-text-secondary: #6B6C76;
   --color-text-muted: #9B9CA6;
-  --color-accent: #4A7A62;
-  --color-accent-hover: #3A6A52;
-  --color-accent-muted: rgba(74, 122, 98, 0.10);
+  --color-accent: #7B6EB8;
+  --color-accent-hover: #6B5EA8;
+  --color-accent-muted: rgba(123, 110, 184, 0.10);
 }
 
 /* === ACCENT OVERRIDES === */
@@ -220,4 +220,32 @@ section {
 
 .footer-link:hover {
   color: var(--color-text);
+}
+
+/* === HERO VISUAL === */
+.hero-visual {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  max-width: 640px;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .hero-visual {
+    display: none;
+  }
+}
+
+/* === HERO ABSTRACT === */
+.hero-abstract {
+  width: 100%;
+  opacity: 0;
+  animation: ha-appear 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes ha-appear {
+  to { opacity: 1; }
 }

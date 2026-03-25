@@ -22,7 +22,7 @@ export function SiteHeader() {
 
   return (
     <header className={`site-header ${scrolled ? "site-header-scrolled" : ""}`}>
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-8">
         <a href="#" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", color: "var(--color-text)" }}>
           <Logo size={32} />
           <span style={{

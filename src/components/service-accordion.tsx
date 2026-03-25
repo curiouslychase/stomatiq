@@ -6,22 +6,22 @@ import { HalftoneZone } from "@/components/ui/halftone-zone";
 
 const services = [
   {
+    number: "01",
     name: "Discovery Session",
-    duration: "Half-day audit",
-    deliverable: "Prioritized opportunity map",
-    note: "You\u2019ll leave knowing exactly where to invest.",
+    duration: "Half-day, on-site or remote",
+    description: "I audit your team\u2019s current workflows, interview key people, and map where AI creates real leverage vs where it\u2019s theater. You leave with a prioritized opportunity map: the three highest-impact workflows to redesign, ranked by effort and payoff. No fluff, no 50-page deck. Just clarity on where to start.",
   },
   {
+    number: "02",
     name: "Design Sprint",
     duration: "2 weeks",
-    deliverable: "Workflow designs + implementation plan",
-    note: "Go from \u2018we should use AI\u2019 to \u2018here\u2019s exactly how.\u2019",
+    description: "We take the top opportunity from Discovery and design the workflow end-to-end: how it works, what tools it needs, how your team interacts with it, and what changes in their day-to-day. Deliverable is a workflow design your team can actually execute on, plus an implementation plan with specific milestones. You go from \u2018we should use AI\u2019 to \u2018here\u2019s exactly how.\u2019",
   },
   {
+    number: "03",
     name: "Full Implementation",
-    duration: "30\u201360 days",
-    deliverable: "Hands-on building alongside your team",
-    note: "I build it with you, not for you.",
+    duration: "30\u201360 days, hands-on",
+    description: "I embed with your team and we build the workflow together. I write code, configure tools, train people, and iterate based on real usage. Your team learns the system as we build it so you\u2019re never dependent on me. By day 60, the workflow is live, your team owns it, and I\u2019m out.",
   },
 ];
 
@@ -96,7 +96,14 @@ export function ServiceAccordion() {
                 fontFamily: "inherit",
               }}
             >
-              <span style={{ fontWeight: 600, fontSize: "1.05rem" }}>{s.name}</span>
+              <span style={{ display: "flex", alignItems: "baseline", gap: "0.75rem" }}>
+                <span style={{
+                  fontFamily: "var(--font-jetbrains-mono), monospace",
+                  fontSize: "0.8rem",
+                  color: "var(--color-text-muted)",
+                }}>{s.number}</span>
+                <span style={{ fontWeight: 600, fontSize: "1.05rem" }}>{s.name}</span>
+              </span>
               <span style={{
                 fontFamily: "var(--font-jetbrains-mono), monospace",
                 fontSize: "1rem",
@@ -107,7 +114,7 @@ export function ServiceAccordion() {
             </button>
             <div
               style={{
-                maxHeight: i === active ? "200px" : "0",
+                maxHeight: i === active ? "400px" : "0",
                 overflow: "hidden",
                 opacity: i === active ? 1 : 0,
                 transition: "max-height 0.3s ease, opacity 0.3s ease",
@@ -123,11 +130,8 @@ export function ServiceAccordion() {
                 }}>
                   {s.duration}
                 </p>
-                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "0.5rem" }}>
-                  {s.deliverable}
-                </p>
-                <p style={{ color: "var(--color-text-muted)", fontSize: "0.85rem", fontStyle: "italic" }}>
-                  {s.note}
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                  {s.description}
                 </p>
               </div>
             </div>

@@ -5,12 +5,12 @@ import { siteConfig } from "@/lib/site-config";
 export function SiteFooter() {
   return (
     <footer style={{ position: "relative", overflow: "hidden" }}>
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-[1440px] px-8">
         <DotDivider />
       </div>
 
       {/* Info row */}
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row">
+      <div className="flex flex-col items-center justify-between gap-4 mx-auto max-w-[1440px] px-8 py-10 sm:flex-row">
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "var(--color-text-muted)" }}>
           <Logo size={24} />
