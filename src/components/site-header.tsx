@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navLinks = [
   { href: "#hero", num: "01", label: "Intro" },
@@ -22,16 +21,16 @@ export function SiteHeader() {
 
   return (
     <header className={`site-header ${scrolled ? "site-header-scrolled" : ""}`}>
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-8">
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", color: "var(--color-text)" }}>
-          <Logo size={32} />
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-center px-8 md:justify-between">
+        <a href="#" className="flex items-center gap-3 no-underline" style={{ color: "var(--color-text)" }}>
+          <Logo size={28} className="hidden md:block" />
+          <Logo size={40} className="md:hidden" />
           <span style={{
             fontFamily: "var(--font-jetbrains-mono), monospace",
             fontWeight: 500,
-            fontSize: "0.85rem",
             textTransform: "uppercase",
             letterSpacing: "0.15em",
-          }}>
+          }} className="text-lg md:text-[0.85rem]">
             STOMATIQ
           </span>
         </a>
@@ -49,8 +48,6 @@ export function SiteHeader() {
             </span>
           ))}
         </nav>
-
-        <ThemeToggle />
       </div>
     </header>
   );

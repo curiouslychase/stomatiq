@@ -1,5 +1,6 @@
 import { Logo } from "@/components/logo";
 import { DotDivider } from "@/components/ui/dot-divider";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
 
 export function SiteFooter() {
@@ -30,10 +31,13 @@ export function SiteFooter() {
           {siteConfig.email}
         </a>
 
-        {/* Copyright */}
-        <span style={{ color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
-          &copy; 2026 stomatiq LLC
-        </span>
+        {/* Theme + Copyright */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <span style={{ color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
+            &copy; 2026 stomatiq LLC
+          </span>
+        </div>
       </div>
 
       {/* Giant typographic treatment */}
