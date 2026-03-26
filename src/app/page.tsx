@@ -53,7 +53,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy */}
-      <section id="philosophy" style={{ padding: "6rem 0" }}>
+      <section id="philosophy" className="py-6 md:py-24">
         <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>Philosophy</SectionLabel>
@@ -98,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section id="services" style={{ padding: "6rem 0" }}>
+      <section id="services" className="py-6 md:py-24">
         <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>Services</SectionLabel>
@@ -129,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" style={{ padding: "6rem 0" }}>
+      <section id="about" className="py-6 md:py-24">
         <div className="mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
             <SectionLabel>About</SectionLabel>
