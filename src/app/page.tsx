@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SectionLabel } from "@/components/ui/section-label";
 import { GridCard } from "@/components/ui/grid-card";
@@ -136,12 +137,20 @@ export default function Home() {
           </ScrollReveal>
           <ScrollReveal delay={75}>
             <GridCard variant="minimal">
-              <div style={{ padding: "1.5rem", maxWidth: "640px" }}>
+              <div className="flex flex-col items-center md:flex-row md:items-center" style={{ padding: "1.5rem", gap: "2rem" }}>
+                <Image
+                  src="/img/avatar.png"
+                  alt="Chase Adams"
+                  width={120}
+                  height={120}
+                  style={{ borderRadius: "2px", flexShrink: 0 }}
+                />
                 <p style={{
                   color: "var(--color-text-secondary)",
                   fontSize: "1.1rem",
                   lineHeight: 1.7,
                   fontWeight: 300,
+                  maxWidth: "640px",
                 }}>
                   I&apos;m Chase. I lead engineering teams building AI systems every day.
                   I started Stomatiq because I kept seeing the same pattern: smart teams
