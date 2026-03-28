@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: "Stomatiq — 10x Your Team with AI",
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
 };

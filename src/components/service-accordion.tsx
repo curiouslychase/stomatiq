@@ -7,21 +7,21 @@ import { HalftoneZone } from "@/components/ui/halftone-zone";
 const services = [
   {
     number: "01",
-    name: "Discovery Session",
+    name: "10x Diagnostic",
     duration: "Half-day, on-site or remote",
-    description: "I audit your team\u2019s current workflows, interview key people, and map where AI creates real leverage vs where it\u2019s theater. You leave with a prioritized opportunity map: the three highest-impact workflows to redesign, ranked by effort and payoff. No fluff, no 50-page deck. Just clarity on where to start.",
+    description: "I map your team\u2019s workflows and find where you\u2019re leaving 10x on the table. You leave with a ranked opportunity map: the three highest-leverage workflows to redesign, scored by effort and exponential payoff. No 50-page deck. Just clarity on where the multiplier is hiding.",
   },
   {
     number: "02",
-    name: "Design Sprint",
+    name: "Exponential Design Sprint",
     duration: "2 weeks",
-    description: "We take the top opportunity from Discovery and design the workflow end-to-end: how it works, what tools it needs, how your team interacts with it, and what changes in their day-to-day. Deliverable is a workflow design your team can actually execute on, plus an implementation plan with specific milestones. You go from \u2018we should use AI\u2019 to \u2018here\u2019s exactly how.\u2019",
+    description: "We take the top opportunity and redesign the workflow from zero\u2014as if AI existed when you built it. End-to-end: how it works, what it replaces, how your team interacts with it, and what 10x actually looks like day-to-day. You go from \u2018we should use AI\u2019 to \u2018here\u2019s exactly how we 10x this.\u2019",
   },
   {
     number: "03",
     name: "Full Implementation",
-    duration: "30\u201360 days, hands-on",
-    description: "I embed with your team and we build the workflow together. I write code, configure tools, train people, and iterate based on real usage. Your team learns the system as we build it so you\u2019re never dependent on me. By day 60, the workflow is live, your team owns it, and I\u2019m out.",
+    duration: "30\u201360 days, embedded",
+    description: "I embed with your team and we build the exponential workflow together. Code, tools, training, iteration\u2014based on real usage, not theory. Your team learns the system as we ship it. By day 60, the workflow is live, your team owns it, and the compound gains are already stacking.",
   },
 ];
 

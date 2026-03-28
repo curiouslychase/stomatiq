@@ -7,7 +7,7 @@ import { DotDivider } from "@/components/ui/dot-divider";
 import { ServiceAccordion } from "@/components/service-accordion";
 import { HeroAbstract } from "@/components/hero-abstract";
 import { ConcentricCircles, TriangleGrid, OverlappingCircles } from "@/components/illustrations";
-import { siteConfig } from "@/lib/site-config";
+import { ContactForm } from "@/components/contact-form";
 
 export default function Home() {
   return (
@@ -16,16 +16,16 @@ export default function Home() {
       <section id="hero" className="relative overflow-hidden" style={{ paddingTop: "10rem", paddingBottom: "3rem" }}>
         <div className="relative mx-auto max-w-[1440px] px-8">
           <ScrollReveal>
-            <SectionLabel>AI Workflow Consultancy</SectionLabel>
+            <SectionLabel>AI-Native Consultancy</SectionLabel>
             <h1 style={{
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              fontWeight: 700,
+              fontWeight: 400,
               lineHeight: 1.08,
               letterSpacing: "-0.03em",
               color: "var(--color-text)",
               maxWidth: "720px",
             }}>
-              The bottleneck isn&apos;t your people. It&apos;s the space between them.
+              Your 10-person team, performing like 100.
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -37,13 +37,13 @@ export default function Home() {
               maxWidth: "580px",
               fontWeight: 300,
             }}>
-              We align workflows, org design, and mindset so your team moves with speed and confidence.
+              Stop optimizing. Start running on moonshots. Stomatiq redesigns your workflows, systems, and culture from the ground up&mdash;so AI is woven into how your team thinks, builds, and ships.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div style={{ marginTop: "2.5rem" }}>
-              <MagneticButton href={siteConfig.calendly}>
-                BOOK A FREE AUDIT
+              <MagneticButton href="#contact">
+                FIND YOUR 10X
               </MagneticButton>
             </div>
           </ScrollReveal>
@@ -60,37 +60,37 @@ export default function Home() {
             <SectionLabel>Philosophy</SectionLabel>
             <h2 style={{
               fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: "-0.02em",
               color: "var(--color-text)",
               marginBottom: "3rem",
             }}>
-              AI-native, not AI-assisted
+              Think 10x, not 10%
             </h2>
           </ScrollReveal>
           <div className="grid gap-6 md:grid-cols-3">
             <ScrollReveal delay={0}>
               <GridCard
-                title="Workflow Audit"
+                title="Capabilities, Not Headcount"
                 number="001"
-                description="Find where AI actually helps vs where it&apos;s theater."
+                description="Stop hiring for tasks AI can own. Map your team&apos;s real leverage and multiply it."
                 variant="featured"
                 illustration={<ConcentricCircles />}
               />
             </ScrollReveal>
             <ScrollReveal delay={75}>
               <GridCard
-                title="Redesign from Scratch"
+                title="Design for 10x"
                 number="002"
-                description="What would this process look like if AI existed when you built it?"
+                description="What would this workflow look like if you built it today, AI-first, from zero?"
                 illustration={<TriangleGrid />}
               />
             </ScrollReveal>
             <ScrollReveal delay={150}>
               <GridCard
-                title="Build and Ship"
+                title="Ship Systems, Not Decks"
                 number="003"
-                description="Working systems, not slide decks. Implemented alongside your team."
+                description="Working AI workflows in production. Implemented alongside your team, not handed off in a PDF."
                 illustration={<OverlappingCircles />}
               />
             </ScrollReveal>
@@ -105,12 +105,12 @@ export default function Home() {
             <SectionLabel>Services</SectionLabel>
             <h2 style={{
               fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: "-0.02em",
               color: "var(--color-text)",
               marginBottom: "3rem",
             }}>
-              Three ways to work together
+              Start anywhere. Go exponential.
             </h2>
           </ScrollReveal>
           <ScrollReveal>
@@ -121,8 +121,8 @@ export default function Home() {
               <DotDivider animate />
             </div>
             <div style={{ marginTop: "2rem", textAlign: "center" }}>
-              <MagneticButton href={siteConfig.calendly}>
-                LET&apos;S TALK
+              <MagneticButton href="#contact">
+                FIND YOUR 10X
               </MagneticButton>
             </div>
           </ScrollReveal>
@@ -154,12 +154,39 @@ export default function Home() {
                 }}>
                   I&apos;m Chase. I lead engineering teams building AI systems every day.
                   I started Stomatiq because I kept seeing the same pattern: smart teams
-                  bolting AI onto workflows that needed to be redesigned from the ground up.
-                  I&apos;d rather help you build the right thing.
+                  thinking 10% better when they could be thinking 10x. The problem was never
+                  the people&mdash;it was workflows designed before AI existed. I help teams
+                  redesign from zero and ship something exponential.
                 </p>
               </div>
             </GridCard>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="py-6 md:py-24">
+        <div className="mx-auto max-w-[1440px] px-8">
+          <ScrollReveal>
+            <SectionLabel>Get Started</SectionLabel>
+            <h2 style={{
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text)",
+              marginBottom: "3rem",
+            }}>
+              Let&apos;s find your 10x.
+            </h2>
+          </ScrollReveal>
+          <div className="grid gap-8 md:grid-cols-[0.8fr_1fr] items-center">
+            <div className="hidden md:flex items-center justify-center" style={{ pointerEvents: "none" }}>
+              <HeroAbstract />
+            </div>
+            <ScrollReveal delay={75}>
+              <ContactForm />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </>
