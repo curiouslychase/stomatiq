@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Work_Sans, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PostHogProvider } from "@/components/posthog-provider";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -39,9 +40,11 @@ export default function RootLayout({
     >
       <body>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-        <SiteHeader />
-        <main style={{ position: "relative", zIndex: 1 }}>{children}</main>
-        <SiteFooter />
+        <PostHogProvider>
+          <SiteHeader />
+          <main style={{ position: "relative", zIndex: 1 }}>{children}</main>
+          <SiteFooter />
+        </PostHogProvider>
       </body>
     </html>
   );
